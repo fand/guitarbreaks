@@ -5,11 +5,18 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "$(npm bin)/http-server"
+    "start": "$(npm bin)/http-server",
+    "build": "$(npm bin)/browserify -t babelify src/app.js -o index.js",
+    "watch": "$(npm bin)/watchify -t babelify src/app.js -o index.js -v"
   },
   "author": "",
   "license": "MIT",
   "dependencies": {
     "http-server": "^0.8.0"
+  },
+  "devDependencies": {
+    "babelify": "^6.1.3",
+    "browserify": "^11.0.0",
+    "watchify": "^3.3.0"
   }
 }
