@@ -10,6 +10,10 @@ class Sample {
 
   }
 
+  connect () {
+
+  }
+
 }
 
 export default Sample;
