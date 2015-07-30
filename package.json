@@ -1,7 +1,7 @@
 {
-  "name": "gamecore",
+  "name": "guitar-break",
   "version": "1.0.0",
-  "description": "",
+  "description": "BreakCore with GuitarFreak GamePad",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
