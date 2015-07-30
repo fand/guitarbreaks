@@ -32,7 +32,6 @@ class Guitar {
       let table  = [];
 
       let k = 2 * this.distortion / (1 - this.distortion);
-       
       for (var i = 0; i < FINE; i++) {
         // LINEAR INTERPOLATION: x := (c - a) * (z - y) / (b - a) + y
         // a = 0, b = 2048, z = 1, y = -1, c = i

@@ -1,29 +1,11 @@
 'use strict';
 
+import Gamepad from './Gamepad';
 import Guitar from './Guitar';
 
+const pad = new Gamepad();
 const guitar = new Guitar();
 
-let isPlaying = false;
-
-
-setInterval(function () {
-  const candidates = navigator.getGamepads();
-  const pads = Object.keys(candidates).map(k => candidates[k]).filter(p => p);
-  pads.forEach(pad => {
-
-    let notes = [];
-    pad.buttons.forEach(function (b, i) {
-      if (!b.pressed) { return; }
-      notes.push(i);
-    });
-
-    if (pad.axes[1] < -0.5 && !isPlaying) {
-      guitar.playNotes(notes);
-      isPlaying = true;
-    }
-    if (pad.axes[1] >= -0.5) {
-      isPlaying = false;
-    }
-  });
-}, 10);
+pad.on('note', function (notes) {
+  guitar.playNotes(notes);
+});
