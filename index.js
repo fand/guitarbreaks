@@ -21,12 +21,12 @@ var Guitar = (function () {
 
     _classCallCheck(this, Guitar);
 
-    this.samples = [new _Sample2['default'](), new _Sample2['default'](), new _Sample2['default']()];
-
     this.ctx = new AudioContext();
 
+    this.samples = [new _Sample2['default'](this.ctx, './wav/kick_ride.wav'), new _Sample2['default'](this.ctx, './wav/snare.wav'), new _Sample2['default'](this.ctx, './wav/kick_crash.wav')];
+
     this.waveshaper = this.ctx.createWaveShaper();
-    this.distortion = 0.5;
+    this.distortion = 0.0;
 
     this.samples.forEach(function (s) {
       return s.connect(_this.waveshaper);
@@ -63,6 +63,7 @@ var Guitar = (function () {
   }, {
     key: 'playNotes',
     value: function playNotes(notes) {
+      console.log(notes);
       notes.forEach(this.playNote.bind(this));
     }
   }, {
@@ -70,15 +71,15 @@ var Guitar = (function () {
     value: function playNote(note) {
       switch (note) {
         case 5:
-          this.samples[0].play();
+          this.samples[0].play();return;
         case 1:
-          this.samples[1].play();
+          this.samples[1].play();return;
         case 0:
-          this.samples[2].play();
+          this.samples[2].play();return;
         case 9:
-          this.goLeft();
+          this.goLeft();return;
         case 8:
-          this.goRight();
+          this.goRight();return;
         default:
           return;
       }
@@ -109,16 +110,58 @@ var _createClass = (function () { function defineProperties(target, props) { for
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError('Cannot call a class as a function'); } }
 
 var Sample = (function () {
-  function Sample() {
+  function Sample(ctx, url) {
+    var _this = this;
+
     _classCallCheck(this, Sample);
+
+    this.ctx = ctx;
+    this.loadSample(url).then(function (buffer) {
+      return _this.buffer = buffer;
+    });
+    this.output = this.ctx.createGain();
   }
 
   _createClass(Sample, [{
     key: 'play',
-    value: function play() {}
+    value: function play() {
+      if (this.node) {
+        this.node.stop(0);
+      }
+      this.node = this.ctx.createBufferSource();
+      this.node.buffer = this.buffer;
+      this.node.connect(this.output);
+      this.node.start(0);
+    }
   }, {
     key: 'connect',
-    value: function connect() {}
+    value: function connect(dst) {
+      this.output.connect(dst);
+    }
+  }, {
+    key: 'loadSample',
+    value: function loadSample(url) {
+      var _this2 = this;
+
+      return new Promise(function (resolve, reject) {
+        var req = new XMLHttpRequest();
+        req.open('GET', url, true);
+        req.responseType = 'arraybuffer';
+
+        req.onload = function () {
+          if (!req.response) {
+            reject(new Error('no response'));
+          }
+          _this2.ctx.decodeAudioData(req.response, function (buffer) {
+            resolve(buffer);
+          }, function (err) {
+            reject(err);
+          });
+        };
+
+        req.send();
+      });
+    }
   }]);
 
   return Sample;
@@ -138,6 +181,8 @@ var _Guitar2 = _interopRequireDefault(_Guitar);
 
 var guitar = new _Guitar2['default']();
 
+var isPlaying = false;
+
 setInterval(function () {
   var candidates = navigator.getGamepads();
   var pads = Object.keys(candidates).map(function (k) {
@@ -155,10 +200,14 @@ setInterval(function () {
       notes.push(i);
     });
 
-    if (pad.axes[1] < 0.5) {
+    if (pad.axes[1] < -0.5 && !isPlaying) {
       guitar.playNotes(notes);
+      isPlaying = true;
+    }
+    if (pad.axes[1] >= -0.5) {
+      isPlaying = false;
     }
   });
-}, 1000);
+}, 10);
 
 },{"./Guitar":1}]},{},[3]);

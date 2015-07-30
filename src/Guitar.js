@@ -5,12 +5,16 @@ import Sample from './Sample';
 class Guitar {
 
   constructor () {
-    this.samples = [new Sample(), new Sample(), new Sample()];
-
     this.ctx = new AudioContext();
 
+    this.samples = [
+      new Sample(this.ctx, './wav/kick_ride.wav'),
+      new Sample(this.ctx, './wav/snare.wav'),
+      new Sample(this.ctx, './wav/kick_crash.wav'),
+    ];
+
     this.waveshaper = this.ctx.createWaveShaper();
-    this.distortion = 0.5;
+    this.distortion = 0.0;
 
     this.samples.forEach(s => s.connect(this.waveshaper));
     this.waveshaper.connect(this.ctx.destination);
@@ -41,21 +45,22 @@ class Guitar {
   }
 
   playNotes (notes) {
+    console.log(notes);
     notes.forEach(::this.playNote);
   }
 
   playNote (note) {
     switch (note) {
     case 5:
-      this.samples[0].play();
+      this.samples[0].play(); return;
     case 1:
-      this.samples[1].play();
+      this.samples[1].play(); return;
     case 0:
-      this.samples[2].play();
+      this.samples[2].play(); return;
     case 9:
-      this.goLeft();
+      this.goLeft(); return;
     case 8:
-      this.goRight();
+      this.goRight(); return;
     default:
       return;
     }
