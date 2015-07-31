@@ -5,8 +5,9 @@ import ctx from './Ctx';
 class Node {
 
   constructor () {
-    this.input  = ctx.createGain();
-    this.output = ctx.createGain();
+    this.ctx = ctx;
+    this.input  = this.ctx.createGain();
+    this.output = this.ctx.createGain();
   }
 
   connect (dst) {

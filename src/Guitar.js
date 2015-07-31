@@ -9,9 +9,9 @@ class Guitar extends Node {
     super();
 
     this.samples = [
-      new Sample(this.ctx, './wav/kick_ride.wav'),
-      new Sample(this.ctx, './wav/snare.wav'),
-      new Sample(this.ctx, './wav/kick_crash.wav'),
+      new Sample('./wav/kick_ride.wav'),
+      new Sample('./wav/snare.wav'),
+      new Sample('./wav/kick_crash.wav'),
     ];
 
     this.samples.forEach(s => s.connect(this.output));

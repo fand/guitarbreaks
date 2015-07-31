@@ -1,24 +1,20 @@
 'use strict';
 
-import ctx from './Ctx';
+import Node from './Node';
 
-class Sample {
+class Sample extends Node {
 
   constructor (url) {
+    super();
     this.loadSample(url).then(buffer => this.buffer = buffer);
-    this.output = ctx.createGain();
   }
 
   play () {
     if (this.node) { this.node.stop(0); }
-    this.node = ctx.createBufferSource();
+    this.node = this.ctx.createBufferSource();
     this.node.buffer = this.buffer;
     this.node.connect(this.output);
     this.node.start(0);
-  }
-
-  connect (dst) {
-    this.output.connect(dst);
   }
 
   loadSample (url) {
@@ -29,7 +25,7 @@ class Sample {
 
       req.onload = () => {
         if (!req.response) { reject(new Error('no response')); }
-        ctx.decodeAudioData(req.response, function (buffer) {
+        this.ctx.decodeAudioData(req.response, function (buffer) {
           resolve(buffer);
         }, function (err) {
           reject(err);
@@ -41,6 +37,5 @@ class Sample {
   }
 
 }
-
 
 export default Sample;
