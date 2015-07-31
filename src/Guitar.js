@@ -1,11 +1,12 @@
 'use strict';
 
 import Sample from './Sample';
+import Node from './Node';
 
-class Guitar {
+class Guitar extends Node {
 
   constructor (ctx) {
-    this.ctx = ctx;
+    super(ctx);
 
     this.samples = [
       new Sample(this.ctx, './wav/kick_ride.wav'),
@@ -13,14 +14,12 @@ class Guitar {
       new Sample(this.ctx, './wav/kick_crash.wav'),
     ];
 
-    this.gain = this.ctx.createGain();
-    this.samples.forEach(s => s.connect(this.gain));
+    this.samples.forEach(s => s.connect(this.output));
 
     this.updateTable();
   }
 
   playNotes (notes) {
-    console.log(notes);
     notes.forEach(::this.playNote);
   }
 
@@ -39,14 +38,6 @@ class Guitar {
     default:
       return;
     }
-  }
-
-  connect (dst) {
-    this.gain.connect(dst);
-  }
-
-  disconnect (dst) {
-    this.gain.disconnect(dst);
   }
 
   goLeft () {

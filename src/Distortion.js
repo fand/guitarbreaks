@@ -1,12 +1,11 @@
 'use strict';
 
-class Distortion {
+import Node from './Node';
+
+class Distortion extends Node {
 
   constructor (ctx) {
-    this.ctx = ctx;
-
-    this.input = this.ctx.createGain();
-    this.output = this.ctx.createGain();
+    super(ctx);
 
     this.waveshaper = this.ctx.createWaveShaper();
     this.distortion = 0.0;
@@ -34,14 +33,6 @@ class Distortion {
 
       this.waveshaper.curve = table;
     }
-  }
-
-  connect (dst) {
-    this.output.connect(dst);
-  }
-
-  disconnect (dst) {
-    this.output.disconnect(dst);
   }
 
 }
