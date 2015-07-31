@@ -1,12 +1,12 @@
 'use strict';
 
+import ctx from './Ctx';
+
 class Node {
 
-  constructor (ctx) {
-    this.ctx = ctx;
-
-    this.input = this.ctx.createGain();
-    this.output = this.ctx.createGain();
+  constructor () {
+    this.input  = ctx.createGain();
+    this.output = ctx.createGain();
   }
 
   connect (dst) {

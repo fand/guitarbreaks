@@ -307,6 +307,15 @@ function isUndefined(arg) {
 Object.defineProperty(exports, '__esModule', {
   value: true
 });
+exports['default'] = new AudioContext();
+module.exports = exports['default'];
+
+},{}],3:[function(require,module,exports){
+'use strict';
+
+Object.defineProperty(exports, '__esModule', {
+  value: true
+});
 
 var _createClass = (function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ('value' in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; })();
 
@@ -325,10 +334,10 @@ var _Node3 = _interopRequireDefault(_Node2);
 var Distortion = (function (_Node) {
   _inherits(Distortion, _Node);
 
-  function Distortion(ctx) {
+  function Distortion() {
     _classCallCheck(this, Distortion);
 
-    _get(Object.getPrototypeOf(Distortion.prototype), 'constructor', this).call(this, ctx);
+    _get(Object.getPrototypeOf(Distortion.prototype), 'constructor', this).call(this);
 
     this.waveshaper = this.ctx.createWaveShaper();
     this.distortion = 0.0;
@@ -368,7 +377,7 @@ var Distortion = (function (_Node) {
 exports['default'] = Distortion;
 module.exports = exports['default'];
 
-},{"./Node":5}],3:[function(require,module,exports){
+},{"./Node":6}],4:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, '__esModule', {
@@ -450,7 +459,7 @@ var Gamepad = (function (_EventEmitter) {
 exports['default'] = Gamepad;
 module.exports = exports['default'];
 
-},{"events":1}],4:[function(require,module,exports){
+},{"events":1}],5:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, '__esModule', {
@@ -478,12 +487,12 @@ var _Node3 = _interopRequireDefault(_Node2);
 var Guitar = (function (_Node) {
   _inherits(Guitar, _Node);
 
-  function Guitar(ctx) {
+  function Guitar() {
     var _this = this;
 
     _classCallCheck(this, Guitar);
 
-    _get(Object.getPrototypeOf(Guitar.prototype), 'constructor', this).call(this, ctx);
+    _get(Object.getPrototypeOf(Guitar.prototype), 'constructor', this).call(this);
 
     this.samples = [new _Sample2['default'](this.ctx, './wav/kick_ride.wav'), new _Sample2['default'](this.ctx, './wav/snare.wav'), new _Sample2['default'](this.ctx, './wav/kick_crash.wav')];
 
@@ -531,7 +540,7 @@ var Guitar = (function (_Node) {
 exports['default'] = Guitar;
 module.exports = exports['default'];
 
-},{"./Node":5,"./Sample":6}],5:[function(require,module,exports){
+},{"./Node":6,"./Sample":7}],6:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, '__esModule', {
@@ -540,16 +549,20 @@ Object.defineProperty(exports, '__esModule', {
 
 var _createClass = (function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ('value' in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; })();
 
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { 'default': obj }; }
+
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError('Cannot call a class as a function'); } }
 
+var _Ctx = require('./Ctx');
+
+var _Ctx2 = _interopRequireDefault(_Ctx);
+
 var Node = (function () {
-  function Node(ctx) {
+  function Node() {
     _classCallCheck(this, Node);
 
-    this.ctx = ctx;
-
-    this.input = this.ctx.createGain();
-    this.output = this.ctx.createGain();
+    this.input = _Ctx2['default'].createGain();
+    this.output = _Ctx2['default'].createGain();
   }
 
   _createClass(Node, [{
@@ -570,7 +583,7 @@ var Node = (function () {
 exports['default'] = Node;
 module.exports = exports['default'];
 
-},{}],6:[function(require,module,exports){
+},{"./Ctx":2}],7:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, '__esModule', {
@@ -579,19 +592,24 @@ Object.defineProperty(exports, '__esModule', {
 
 var _createClass = (function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ('value' in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; })();
 
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { 'default': obj }; }
+
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError('Cannot call a class as a function'); } }
 
+var _Ctx = require('./Ctx');
+
+var _Ctx2 = _interopRequireDefault(_Ctx);
+
 var Sample = (function () {
-  function Sample(ctx, url) {
+  function Sample(url) {
     var _this = this;
 
     _classCallCheck(this, Sample);
 
-    this.ctx = ctx;
     this.loadSample(url).then(function (buffer) {
       return _this.buffer = buffer;
     });
-    this.output = this.ctx.createGain();
+    this.output = _Ctx2['default'].createGain();
   }
 
   _createClass(Sample, [{
@@ -600,7 +618,7 @@ var Sample = (function () {
       if (this.node) {
         this.node.stop(0);
       }
-      this.node = this.ctx.createBufferSource();
+      this.node = _Ctx2['default'].createBufferSource();
       this.node.buffer = this.buffer;
       this.node.connect(this.output);
       this.node.start(0);
@@ -613,8 +631,6 @@ var Sample = (function () {
   }, {
     key: 'loadSample',
     value: function loadSample(url) {
-      var _this2 = this;
-
       return new Promise(function (resolve, reject) {
         var req = new XMLHttpRequest();
         req.open('GET', url, true);
@@ -624,7 +640,7 @@ var Sample = (function () {
           if (!req.response) {
             reject(new Error('no response'));
           }
-          _this2.ctx.decodeAudioData(req.response, function (buffer) {
+          _Ctx2['default'].decodeAudioData(req.response, function (buffer) {
             resolve(buffer);
           }, function (err) {
             reject(err);
@@ -642,7 +658,7 @@ var Sample = (function () {
 exports['default'] = Sample;
 module.exports = exports['default'];
 
-},{}],7:[function(require,module,exports){
+},{"./Ctx":2}],8:[function(require,module,exports){
 'use strict';
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { 'default': obj }; }
@@ -659,17 +675,19 @@ var _Distortion = require('./Distortion');
 
 var _Distortion2 = _interopRequireDefault(_Distortion);
 
-var ctx = new AudioContext();
+var _Ctx = require('./Ctx');
+
+var _Ctx2 = _interopRequireDefault(_Ctx);
 
 var pad = new _Gamepad2['default']();
-var guitar = new _Guitar2['default'](ctx);
-var dist = new _Distortion2['default'](ctx);
+var guitar = new _Guitar2['default']();
+var dist = new _Distortion2['default']();
 
 guitar.connect(dist);
-dist.connect(ctx.destination);
+dist.connect(_Ctx2['default'].destination);
 
 pad.on('note', function (notes) {
   guitar.playNotes(notes);
 });
 
-},{"./Distortion":2,"./Gamepad":3,"./Guitar":4}]},{},[7]);
+},{"./Ctx":2,"./Distortion":3,"./Gamepad":4,"./Guitar":5}]},{},[8]);

@@ -4,8 +4,8 @@ import Node from './Node';
 
 class Distortion extends Node {
 
-  constructor (ctx) {
-    super(ctx);
+  constructor () {
+    super();
 
     this.waveshaper = this.ctx.createWaveShaper();
     this.distortion = 0.0;

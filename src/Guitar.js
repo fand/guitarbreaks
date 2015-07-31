@@ -5,8 +5,8 @@ import Node from './Node';
 
 class Guitar extends Node {
 
-  constructor (ctx) {
-    super(ctx);
+  constructor () {
+    super();
 
     this.samples = [
       new Sample(this.ctx, './wav/kick_ride.wav'),
