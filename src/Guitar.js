@@ -15,8 +15,6 @@ class Guitar extends Node {
     ];
 
     this.samples.forEach(s => s.connect(this.output));
-
-    this.updateTable();
   }
 
   playNotes (notes) {

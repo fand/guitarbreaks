@@ -10,8 +10,10 @@ class Distortion extends Node {
     this.waveshaper = this.ctx.createWaveShaper();
     this.distortion = 0.0;
 
-    this.input.conenct(this.waveshaper);
+    this.input.connect(this.waveshaper);
     this.waveshaper.connect(this.output);
+
+    this.updateTable();
   }
 
   setDistortion (distortion) {

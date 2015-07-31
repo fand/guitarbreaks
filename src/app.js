@@ -10,7 +10,7 @@ const pad    = new Gamepad();
 const guitar = new Guitar();
 const dist   = new Distortion();
 
-guitar.connect(dist);
+guitar.connect(dist.input);
 dist.connect(ctx.destination);
 
 pad.on('note', function (notes) {

@@ -11,6 +11,7 @@ class Node {
   }
 
   connect (dst) {
+    console.log(this.output);
     this.output.connect(dst);
   }
 
