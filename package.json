@@ -5,14 +5,23 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "$(npm bin)/http-server",
-    "build": "$(npm bin)/browserify -t [babelify --stage 0] src/app.js -o index.js",
-    "watch": "$(npm bin)/watchify -t [babelify --stage 0] src/app.js -o index.js -v"
+    "start": "$(npm bin)/gulp",
+    "build": "$(npm bin)/gulp build",
+    "watch": "$(npm bin)/gulp watch"
   },
   "author": "",
   "license": "MIT",
   "dependencies": {
-    "http-server": "^0.8.0"
+    "babel": "^5.8.20",
+    "browser-sync": "^2.8.2",
+    "gulp": "^3.9.0",
+    "gulp-if": "^1.2.5",
+    "gulp-load-plugins": "^1.0.0-rc.1",
+    "gulp-notify": "^2.2.0",
+    "gulp-plumber": "^1.0.1",
+    "gulp-sass": "^2.0.4",
+    "http-server": "^0.8.0",
+    "vinyl-source-stream": "^1.1.0"
   },
   "devDependencies": {
     "babelify": "^6.1.3",
