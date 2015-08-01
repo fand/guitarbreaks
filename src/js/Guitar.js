@@ -18,7 +18,6 @@ class Guitar extends Node {
   }
 
   playNotes (notes) {
-    console.log(notes);
     notes.forEach(::this.playNote);
   }
 

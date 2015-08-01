@@ -13,13 +13,21 @@ const dist   = new Distortion();
 guitar.connect(dist.input);
 dist.connect(ctx.destination);
 
-let buffer = [];
 let interval = 500;
+const $interval = document.getElementById('interval');
+$interval.addEventListener('change', () => {
+  interval = $interval.value;
+});
+
+let buffer = [];
 let isPlaying = false;
 
 const play = () => {
-  guitar.playNotes(buffer.map((b, i) => i));
-  buffer = [];
+  const bbb = buffer.map((b, i) => {
+    b = false;
+    return i;
+  });
+  guitar.playNotes(bbb);
 };
 const poll = () => {
   if (!isPlaying) { return; }
@@ -28,12 +36,10 @@ const poll = () => {
 };
 
 pad.on('noteOn', () => {
-  console.log('on');
   isPlaying = true;
   poll();
 });
 pad.on('noteOff', () => {
-  console.log('off');
   isPlaying = false;
   buffer = [];
 });
