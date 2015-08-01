@@ -5,9 +5,9 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "$(npm bin)/http-server",
-    "build": "$(npm bin)/browserify -t [babelify --stage 0] src/app.js -o index.js",
-    "watch": "$(npm bin)/watchify -t [babelify --stage 0] src/app.js -o index.js -v"
+    "start": "$(npm bin)/gulp",
+    "build": "$(npm bin)/gulp build",
+    "watch": "$(npm bin)/gulp watch"
   },
   "author": "",
   "license": "MIT",
