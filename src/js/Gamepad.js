@@ -13,6 +13,8 @@ class Gamepad extends EventEmitter {
     this.isPlaying = false;
 
     this.startPolling();
+
+    this.simulate()
   }
 
   startPolling () {
@@ -28,19 +30,35 @@ class Gamepad extends EventEmitter {
     const pads = Object.keys(candidates).map(k => candidates[k]).filter(p => p);
     pads.forEach(pad => {
 
-      let notes = [];
       pad.buttons.forEach(function (b, i) {
         if (!b.pressed) { return; }
-        notes.push(i);
+        this.emit('key', i);
       });
 
       if (pad.axes[1] < THRESHOLD && !this.isPlaying) {
-        this.emit('note', notes);
+        this.emit('noteOn');
         this.isPlaying = true;
       }
 
       if (pad.axes[1] >= THRESHOLD) {
+        this.emit('noteOff');
         this.isPlaying = false;
+      }
+    });
+  }
+
+  simulate () {
+    window.addEventListener('keydown', (e) => {
+      if (49 <= e.keyCode && e.keyCode <= 53) {
+        this.emit('key', e.keyCode - 48);
+      }
+      if (e.keyCode === 40) {
+        this.emit('noteOn');
+      }
+    });
+    window.addEventListener('keyup', (e) => {
+      if (e.keyCode === 40) {
+        this.emit('noteOff');
       }
     });
   }
