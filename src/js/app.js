@@ -18,7 +18,7 @@ let interval = 500;
 let isPlaying = false;
 
 const play = () => {
-  guitar.playNotes(buffer);
+  guitar.playNotes(buffer.map((b, i) => i));
   buffer = [];
 };
 const poll = () => {
