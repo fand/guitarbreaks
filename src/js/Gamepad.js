@@ -6,15 +6,18 @@ const THRESHOLD = -0.3;
 
 class Gamepad extends EventEmitter {
 
-  constructor () {
+  constructor (simulate) {
     super();
 
     this.timer     = null;
     this.isPlaying = false;
 
-    this.startPolling();
-
-    this.simulate()
+    if (simulate) {
+      this.simulate()
+    }
+    else {
+      this.startPolling();
+    }
   }
 
   startPolling () {
