@@ -8,6 +8,7 @@ import Distortion from './Distortion';
 
 import ctx from './Ctx';
 
+import TimerComponent from './TimerComponent';
 import GamepadComponent from './GamepadComponent';
 import DistortionComponent from './DistortionComponent';
 
@@ -23,21 +24,6 @@ class VM {
     this.dist   = new Distortion();
     this.guitar.connect(this.dist.input);
     this.dist.connect(ctx.destination);
-
-    this.pollTimer = null;
-    this.pad.on('noteOn', ::this.poll);
-    this.pad.on('noteOff', () => {
-      clearTimeout(this.pollTimer);
-    });
-  }
-
-  onChangeInterval (e) {
-    this.interval(e.target.value);
-  }
-
-  poll () {
-    this.playNotes();
-    this.pollTimer = setTimeout(::this.poll, this.interval());
   }
 
   playNotes () {
@@ -56,18 +42,7 @@ App.controller = function() {
 App.view = function (vm) {
   return m('html', [
     m('body', [
-      m('ul', [
-        m('li', [
-          m('span', 'interval'),
-          m('input', {
-            type     : 'range',
-            min      : 100,
-            max      : 5000,
-            onchange : ::vm.onChangeInterval,
-            value    : vm.interval()
-          }),
-        ]),
-      ]),
+      m.component(TimerComponent, { pad: vm.pad, callback: ::vm.playNotes }),
       m.component(GamepadComponent, { gamepad: vm.pad }),
       m.component(DistortionComponent, { distortionNode: vm.dist }),
     ])
