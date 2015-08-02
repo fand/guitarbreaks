@@ -33,11 +33,11 @@ export default {
       }),
       m('img.Gamepad__Button.red', {
         src : '../image/red_off.png',
-        class : vm.pad.buttons[1].pressed ? 'on' : 'off',
+        class : vm.pad.buttons[5].pressed ? 'on' : 'off',
       }),
       m('img.Gamepad__Button.green', {
         src : '../image/green_off.png',
-        class : vm.pad.buttons[5].pressed ? 'on' : 'off',
+        class : vm.pad.buttons[1].pressed ? 'on' : 'off',
       }),
     ]);
   }
