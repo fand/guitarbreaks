@@ -7,21 +7,32 @@ class VM {
   constructor (node) {
     this.node = node;
 
+    this.isOn = true;
     this.distortion = m.prop(10000);
     this.volume     = m.prop(3000);
-
   }
 
   onChangeDistortion (e) {
     this.distortion(e.target.value);
-    this.node.setDistortion(e.target.value / 10000.0);
+    if (this.isOn) {
+      this.node.setDistortion(e.target.value / 10000.0);
+    }
   }
 
   onChangeVolume (e) {
     this.volume(e.target.value);
-    this.node.setVolume(e.target.value / 10000.0);
+    if (this.isOn) {
+      this.node.setVolume(e.target.value / 10000.0);
+    }
   }
 
+  toggle () {
+    this.isOn = !this.isOn;
+    if (this.isOn) {
+      this.node.setDistortion(e.target.value / 10000.0);
+      this.node.setVolume(e.target.value / 10000.0);
+    }
+  }
 }
 
 export default {
@@ -52,7 +63,13 @@ export default {
             value    : vm.volume()
           }),
         ]),
-      ])
+      ]),
+      m('.indicator', {
+        class : vm.isOn ? 'on' :'off'
+      }),
+      m('button', {
+        onclick : :: vm.toggle,
+      }, 'toggle')
     ]);
   }
 };
