@@ -12,6 +12,8 @@ class Gamepad extends EventEmitter {
     this.timer     = null;
     this.isPlaying = false;
 
+    this.buttons = new Array(12);
+
     if (simulate) {
       this.simulate()
     }
@@ -31,29 +33,26 @@ class Gamepad extends EventEmitter {
   poll () {
     const candidates = navigator.getGamepads();
     const pads = Object.keys(candidates).map(k => candidates[k]).filter(p => p);
-    pads.forEach(pad => {
+    // const pad = pads.filter()  // TODO :filter only GuitarFreak Controller
+    const pad = pads[0];
 
-      pad.buttons.forEach((b, i) => {
-        if (!b.pressed) { return; }
-        this.emit('key', i);
-      });
+    this.buttons = pad.buttons;
 
-      if (pad.axes[1] < THRESHOLD && !this.isPlaying) {
-        this.emit('noteOn');
-        this.isPlaying = true;
-      }
+    if (pad.axes[1] < THRESHOLD && !this.isPlaying) {
+      this.emit('noteOn');
+      this.isPlaying = true;
+    }
+    if (pad.axes[1] >= THRESHOLD && this.isPlaying) {
+      this.emit('noteOff');
+      this.isPlaying = false;
+    }
 
-      if (pad.axes[1] >= THRESHOLD && this.isPlaying) {
-        this.emit('noteOff');
-        this.isPlaying = false;
-      }
-    });
   }
 
   simulate () {
     window.addEventListener('keydown', (e) => {
-      if (49 <= e.keyCode && e.keyCode <= 53) {
-        this.emit('key', e.keyCode - 48);
+      if (49 <= e.keyCode && e.keyCode <= 54) {
+        this.buttons[e.keyCode - 49] = { pressed: true };
       }
       if (e.keyCode === 40 && !this.isPlaying) {
         this.emit('noteOn');
@@ -61,9 +60,13 @@ class Gamepad extends EventEmitter {
       }
     });
     window.addEventListener('keyup', (e) => {
+      if (49 <= e.keyCode && e.keyCode <= 54) {
+        this.buttons[e.keyCode - 49] = { pressed: false };
+      }
       if (e.keyCode === 40 && this.isPlaying) {
         this.emit('noteOff');
         this.isPlaying = false;
+        this.buttons = new Array(12);
       }
     });
   }

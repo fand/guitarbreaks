@@ -24,15 +24,14 @@ class VM {
     guitar.connect(dist.input);
     dist.connect(ctx.destination);
 
-    let buffer = [];
     let isPlaying = false;
 
     const play = () => {
-      const bbb = buffer.map((b, i) => {
-        b = false;
-        return i;
-      });
-      guitar.playNotes(bbb);
+      let buffer = [];
+      pad.buttons.forEach((b, i) => {
+        if (b.pressed) { buffer.push(i); }
+      })
+      guitar.playNotes(buffer);
     };
     const poll = () => {
       if (!isPlaying) { return; }
@@ -46,13 +45,7 @@ class VM {
     });
     pad.on('noteOff', () => {
       isPlaying = false;
-      buffer = [];
     });
-
-    pad.on('key', function (key) {
-      buffer[key] = true;
-    });
-
   }
 
   onChangeInterval (e) {
