@@ -12,14 +12,14 @@ const pad    = new Gamepad(true);
 const guitar = new Guitar();
 const dist   = new Distortion();
 
+import DistortionComponent from './DistortionComponent';
+
 
 var App = {};
 
 class VM {
   constructor () {
     this.interval   = m.prop(500);
-    this.distortion = m.prop(10000);
-    this.volume     = m.prop(3000);
 
     guitar.connect(dist.input);
     dist.connect(ctx.destination);
@@ -55,16 +55,8 @@ class VM {
 
   }
 
-  onChangeDistortion (e) {
-    this.distortion(e.target.value);
-    dist.setDistortion(e.target.value / 10000.0);
-  }
   onChangeInterval (e) {
     this.interval(e.target.value);
-  }
-  onChangeVolume (e) {
-    this.volume(e.target.value);
-    dist.setVolume(e.target.value / 10000.0);
   }
 }
 
@@ -77,26 +69,6 @@ App.view = function (vm) {
     m('body', [
       m('ul', [
         m('li', [
-          m('span', 'distortion'),
-          m('input', {
-            type     : 'range',
-            min      : 10000,
-            max      : 30000,
-            onchange : ::vm.onChangeDistortion,
-            value    : vm.distortion()
-          }),
-        ]),
-        m('li', [
-          m('span', 'volume'),
-          m('input', {
-            type     : 'range',
-            min      : 0,
-            max      : 10000,
-            onchange : ::vm.onChangeVolume,
-            value    : vm.volume()
-          }),
-        ]),
-        m('li', [
           m('span', 'interval'),
           m('input', {
             type     : 'range',
@@ -106,7 +78,8 @@ App.view = function (vm) {
             value    : vm.interval()
           }),
         ]),
-      ])
+      ]),
+      m.component(DistortionComponent, { distortionNode: dist }),
     ])
   ]);
 };
