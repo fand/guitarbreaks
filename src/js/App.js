@@ -8,6 +8,7 @@ import Distortion from './Distortion';
 
 import ctx from './Ctx';
 
+import GamepadComponent from './GamepadComponent';
 import DistortionComponent from './DistortionComponent';
 
 var App = {};
@@ -67,6 +68,7 @@ App.view = function (vm) {
           }),
         ]),
       ]),
+      m.component(GamepadComponent, { gamepad: vm.pad }),
       m.component(DistortionComponent, { distortionNode: vm.dist }),
     ])
   ]);
