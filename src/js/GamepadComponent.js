@@ -19,7 +19,6 @@ export default {
   },
 
   view : function (vm) {
-    console.log('view');
     return m('.Gamepad', [
       m('img.Gamepad__Guitar', { src : '../image/guitar_plain.png' }),
       m('img.Gamepad__Button.blue', {
