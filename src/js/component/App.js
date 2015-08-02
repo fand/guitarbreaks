@@ -2,15 +2,15 @@
 
 import m from 'mithril';
 
-import Gamepad from './Gamepad';
-import Guitar from './Guitar';
-import Distortion from './Distortion';
+import Gamepad from '../model/Gamepad';
+import Guitar from '../model/Guitar';
+import Distortion from '../model/Distortion';
 
-import ctx from './Ctx';
+import ctx from '../Ctx';
 
-import TimerComponent from './TimerComponent';
-import GamepadComponent from './GamepadComponent';
-import DistortionComponent from './DistortionComponent';
+import TimerComponent from './Timer';
+import GamepadComponent from './Gamepad';
+import DistortionComponent from './Distortion';
 
 var App = {};
 

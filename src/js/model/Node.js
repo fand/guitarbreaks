@@ -1,6 +1,6 @@
 'use strict';
 
-import ctx from './Ctx';
+import ctx from '../Ctx';
 
 class Node {
 
