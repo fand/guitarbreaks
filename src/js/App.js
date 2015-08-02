@@ -8,6 +8,7 @@ import Distortion from './Distortion';
 
 import ctx from './Ctx';
 
+import TimerComponent from './TimerComponent';
 import GamepadComponent from './GamepadComponent';
 import DistortionComponent from './DistortionComponent';
 
@@ -56,18 +57,7 @@ App.controller = function() {
 App.view = function (vm) {
   return m('html', [
     m('body', [
-      m('ul', [
-        m('li', [
-          m('span', 'interval'),
-          m('input', {
-            type     : 'range',
-            min      : 100,
-            max      : 5000,
-            onchange : ::vm.onChangeInterval,
-            value    : vm.interval()
-          }),
-        ]),
-      ]),
+      m.component(TimerComponent, {}),
       m.component(GamepadComponent, { gamepad: vm.pad }),
       m.component(DistortionComponent, { distortionNode: vm.dist }),
     ])
