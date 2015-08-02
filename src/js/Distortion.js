@@ -14,18 +14,15 @@ class Distortion extends Node {
     this.waveshaper.connect(this.output);
 
     this.updateTable();
-
-    document.getElementById('distortion').addEventListener('change', (e) => {
-      this.distortion = e.target.value / 10000.0;
-      this.updateTable();
-    });
-    document.getElementById('volume').addEventListener('change', (e) => {
-      this.output.gain.value = e.target.value / 10000.0;
-    });
   }
 
   setDistortion (distortion) {
     this.distortion = distortion;
+    this.updateTable();
+  }
+
+  setVolume (volume) {
+    this.output.gain.value = volume;
   }
 
   updateTable () {
