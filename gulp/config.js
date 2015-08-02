@@ -8,7 +8,7 @@ const BASE = (p) => path.join(BASE_DIR, p);
 export default {
 
   browserify : {
-    src  : BASE('src/js/app.js'),
+    src  : BASE('src/js/index.js'),
     dst  : BASE('public/js'),
     name : 'index.js',
   },

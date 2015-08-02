@@ -14,7 +14,7 @@ class Guitar extends Node {
       new Sample('./wav/kick_crash.wav'),
     ];
 
-    this.samples.forEach(s => s.connect(this.output));
+    this.samples.forEach(s => s.connect(this.wet));
   }
 
   playNotes (notes) {

@@ -10,22 +10,25 @@ class Distortion extends Node {
     this.waveshaper = this.ctx.createWaveShaper();
     this.distortion = 0.0;
 
+    this.limiter                 = this.ctx.createDynamicsCompressor();
+    this.limiter.threshold.value = 0;
+    this.limiter.ratio.value     = 20;
+    this.limiter.attack.value    = 0;
+
     this.input.connect(this.waveshaper);
-    this.waveshaper.connect(this.output);
+    this.waveshaper.connect(this.limiter);
+    this.limiter.connect(this.wet);
 
     this.updateTable();
-
-    document.getElementById('distortion').addEventListener('change', (e) => {
-      this.distortion = e.target.value / 10000.0;
-      this.updateTable();
-    });
-    document.getElementById('volume').addEventListener('change', (e) => {
-      this.output.gain.value = e.target.value / 10000.0;
-    });
   }
 
   setDistortion (distortion) {
     this.distortion = distortion;
+    this.updateTable();
+  }
+
+  setVolume (volume) {
+    this.output.gain.value = volume;
   }
 
   updateTable () {
