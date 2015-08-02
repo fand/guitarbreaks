@@ -8,12 +8,7 @@ import Distortion from './Distortion';
 
 import ctx from './Ctx';
 
-const pad    = new Gamepad(true);
-const guitar = new Guitar();
-const dist   = new Distortion();
-
 import DistortionComponent from './DistortionComponent';
-
 
 var App = {};
 
@@ -21,15 +16,19 @@ class VM {
   constructor () {
     this.interval   = m.prop(500);
 
-    guitar.connect(dist.input);
-    dist.connect(ctx.destination);
+    // models
+    this.pad    = new Gamepad(true);
+    this.guitar = new Guitar();
+    this.dist   = new Distortion();
+    this.guitar.connect(this.dist.input);
+    this.dist.connect(ctx.destination);
 
     const play = () => {
       let buffer = [];
-      pad.buttons.forEach((b, i) => {
+      this.pad.buttons.forEach((b, i) => {
         if (b.pressed) { buffer.push(i); }
       })
-      guitar.playNotes(buffer);
+      this.guitar.playNotes(buffer);
     };
 
     const poll = () => {
@@ -37,10 +36,10 @@ class VM {
       this.pollTimer = setTimeout(poll, this.interval());
     };
 
-    pad.on('noteOn', () => {
+    this.pad.on('noteOn', () => {
       poll();
     });
-    pad.on('noteOff', () => {
+    this.pad.on('noteOff', () => {
       clearTimeout(this.pollTimer);
     });
   }
@@ -70,7 +69,7 @@ App.view = function (vm) {
           }),
         ]),
       ]),
-      m.component(DistortionComponent, { distortionNode: dist }),
+      m.component(DistortionComponent, { distortionNode: vm.dist }),
     ])
   ]);
 };
