@@ -23,22 +23,8 @@ class VM {
     this.guitar.connect(this.dist.input);
     this.dist.connect(ctx.destination);
 
-    const play = () => {
-      let buffer = [];
-      this.pad.buttons.forEach((b, i) => {
-        if (b.pressed) { buffer.push(i); }
-      })
-      this.guitar.playNotes(buffer);
-    };
-
-    const poll = () => {
-      play();
-      this.pollTimer = setTimeout(poll, this.interval());
-    };
-
-    this.pad.on('noteOn', () => {
-      poll();
-    });
+    this.pollTimer = null;
+    this.pad.on('noteOn', ::this.poll);
     this.pad.on('noteOff', () => {
       clearTimeout(this.pollTimer);
     });
@@ -48,6 +34,18 @@ class VM {
     this.interval(e.target.value);
   }
 
+  poll () {
+    this.playNotes();
+    this.pollTimer = setTimeout(::this.poll, this.interval());
+  }
+
+  playNotes () {
+    let buffer = [];
+    this.pad.buttons.forEach((b, i) => {
+      if (b.pressed) { buffer.push(i); }
+    });
+    this.guitar.playNotes(buffer);
+  }
 }
 
 App.controller = function() {
