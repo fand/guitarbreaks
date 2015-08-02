@@ -13,7 +13,7 @@ class Sample extends Node {
     if (this.node) { this.node.stop(0); }
     this.node = this.ctx.createBufferSource();
     this.node.buffer = this.buffer;
-    this.node.connect(this.output);
+    this.node.connect(this.wet);
     this.node.start(0);
   }
 
