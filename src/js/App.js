@@ -24,8 +24,6 @@ class VM {
     guitar.connect(dist.input);
     dist.connect(ctx.destination);
 
-    let isPlaying = false;
-
     const play = () => {
       let buffer = [];
       pad.buttons.forEach((b, i) => {
@@ -33,24 +31,24 @@ class VM {
       })
       guitar.playNotes(buffer);
     };
+
     const poll = () => {
-      if (!isPlaying) { return; }
       play();
-      setTimeout(poll, this.interval());
+      this.pollTimer = setTimeout(poll, this.interval());
     };
 
     pad.on('noteOn', () => {
-      isPlaying = true;
       poll();
     });
     pad.on('noteOff', () => {
-      isPlaying = false;
+      clearTimeout(this.pollTimer);
     });
   }
 
   onChangeInterval (e) {
     this.interval(e.target.value);
   }
+
 }
 
 App.controller = function() {
