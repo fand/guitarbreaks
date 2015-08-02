@@ -6,12 +6,22 @@ const MINUTE = 60.0 * 1000;
 
 class VM {
 
-  constructor () {
+  constructor (args) {
+    this.pad      = args.pad;
+    this.callback = args.callback;
+
     this.beat = 4;
     this.interval = m.prop(100);
     this.bpm = m.prop(MINUTE / (this.interval() * this.beat));
 
     this.lastClickTime = Date.now();
+
+    // Listen to gamepad
+    this.pollTimer = null;
+    this.pad.on('noteOn', ::this.poll);
+    this.pad.on('noteOff', () => {
+      clearTimeout(this.pollTimer);
+    });
   }
 
   onClick () {
@@ -23,12 +33,15 @@ class VM {
     this.lastClickTime = now;
   }
 
+  poll () {
+    this.callback();
+    this.pollTimer = setTimeout(::this.poll, this.interval());
+  }
+
 }
 
 export default {
-  controller : function (args) {
-    return new VM(args);
-  },
+  controller : (args) => new VM(args),
 
   view : function (vm) {
     return m('.Timer', [
