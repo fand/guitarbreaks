@@ -5,6 +5,11 @@ import m from 'mithril';
 class VM {
   constructor (pad) {
     this.pad = pad;
+    this.buttons = pad.buttons;
+    this.pad.on('buttons', function () {
+      this.buttons = pad.buttons;
+      m.redraw();
+    });
   }
 }
 
@@ -14,14 +19,19 @@ export default {
   },
 
   view : function (vm) {
+    console.log('view');
     return m('.Gamepad', [
-      m('.Gamepad__Button.blue', {
+      m('img.Gamepad__Guitar', { src : '../image/guitar_plain.png' }),
+      m('img.Gamepad__Button.blue', {
+        src : '../image/blue_off.png',
         class : vm.pad.buttons[0].pressed ? 'on' : 'off',
       }),
-      m('.Gamepad__Button.red', {
+      m('img.Gamepad__Button.red', {
+        src : '../image/red_off.png',
         class : vm.pad.buttons[1].pressed ? 'on' : 'off',
       }),
-      m('.Gamepad__Button.green', {
+      m('img.Gamepad__Button.green', {
+        src : '../image/green_off.png',
         class : vm.pad.buttons[5].pressed ? 'on' : 'off',
       }),
     ]);

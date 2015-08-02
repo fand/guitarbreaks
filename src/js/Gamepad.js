@@ -3,6 +3,8 @@
 import { EventEmitter } from 'events';
 
 const THRESHOLD = -0.3;
+const gen = (n, e) => {let g_; return (g_ = (n, acc) => n <= 0 ? acc : g_(n-1, [...acc, e]))(n, [])};
+const BUTTONS = gen(12, {pressed: false});
 
 class Gamepad extends EventEmitter {
 
@@ -12,7 +14,7 @@ class Gamepad extends EventEmitter {
     this.timer     = null;
     this.isPlaying = false;
 
-    this.buttons = new Array(12);
+    this.buttons = BUTTONS;
 
     if (simulate) {
       this.simulate()
@@ -38,6 +40,8 @@ class Gamepad extends EventEmitter {
 
     this.buttons = pad.buttons;
 
+    this.emit('buttons', this.buttons);
+
     if (pad.axes[1] < THRESHOLD && !this.isPlaying) {
       this.emit('noteOn');
       this.isPlaying = true;
@@ -53,6 +57,7 @@ class Gamepad extends EventEmitter {
     window.addEventListener('keydown', (e) => {
       if (49 <= e.keyCode && e.keyCode <= 54) {
         this.buttons[e.keyCode - 49] = { pressed: true };
+        this.emit('buttons', this.buttons);
       }
       if (e.keyCode === 40 && !this.isPlaying) {
         this.emit('noteOn');
@@ -62,11 +67,12 @@ class Gamepad extends EventEmitter {
     window.addEventListener('keyup', (e) => {
       if (49 <= e.keyCode && e.keyCode <= 54) {
         this.buttons[e.keyCode - 49] = { pressed: false };
+        this.emit('buttons', this.buttons);
       }
       if (e.keyCode === 40 && this.isPlaying) {
         this.emit('noteOff');
         this.isPlaying = false;
-        this.buttons = new Array(12);
+        this.buttons = BUTTONS;
       }
     });
   }
