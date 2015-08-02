@@ -5,10 +5,16 @@ import m from 'mithril';
 class VM {
   constructor (pad) {
     this.pad = pad;
-    this.buttons = pad.buttons;
-    this.pad.on('buttons', function () {
-      this.buttons = pad.buttons;
-      m.redraw();
+    this.buttons = this.pad.buttons.map(b => b.pressed);
+
+    this.pad.on('buttons', (buttons) => {
+      const isChanged = this.buttons.some((p, i) => {
+        return p !== buttons[i].pressed;
+      });
+      if (isChanged) {
+        this.buttons = buttons.map(b => b.pressed);
+        m.redraw();
+      }
     });
   }
 }
