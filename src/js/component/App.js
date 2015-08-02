@@ -19,7 +19,7 @@ class VM {
     this.interval   = m.prop(500);
 
     // models
-    this.pad    = new Gamepad(true);
+    this.pad    = new Gamepad(false);
     this.guitar = new Guitar();
     this.dist   = new Distortion();
     this.guitar.connect(this.dist.input);

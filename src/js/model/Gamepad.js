@@ -25,7 +25,7 @@ class Gamepad extends EventEmitter {
   }
 
   startPolling () {
-    this.timer = setInterval(::this.poll, 1);
+    this.timer = setInterval(::this.poll, 10);
   }
 
   stopPolling () {
@@ -34,7 +34,9 @@ class Gamepad extends EventEmitter {
 
   poll () {
     const candidates = navigator.getGamepads();
+    if (!candidates || candidates.length === 0) { return; }
     const pads = Object.keys(candidates).map(k => candidates[k]).filter(p => p);
+    if (!pads || pads.length === 0) { return; }
     // const pad = pads.filter()  // TODO :filter only GuitarFreak Controller
     const pad = pads[0];
 
