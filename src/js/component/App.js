@@ -40,13 +40,11 @@ App.controller = function() {
 };
 
 App.view = function (vm) {
-  return m('html', [
-    m('body', [
-      m.component(TimerComponent, { pad: vm.pad, callback: ::vm.playNotes }),
-      m.component(GamepadComponent, { gamepad: vm.pad }),
-      m.component(DistortionComponent, { distortionNode: vm.dist }),
-    ])
-  ]);
+  return [
+    m.component(TimerComponent, { pad: vm.pad, callback: ::vm.playNotes }),
+    m.component(GamepadComponent, { gamepad: vm.pad }),
+    m.component(DistortionComponent, { distortionNode: vm.dist }),
+  ];
 };
 
 export default App;
