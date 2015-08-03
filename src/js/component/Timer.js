@@ -3,6 +3,8 @@
 import m from 'mithril';
 
 const MINUTE = 60.0 * 1000;
+const SELECT = 9;
+const START  = 8;
 
 class VM {
 
@@ -22,6 +24,22 @@ class VM {
     this.pad.on('noteOff', () => {
       clearTimeout(this.pollTimer);
     });
+
+
+    this.buttons = this.pad.buttons.map(b => b.pressed);
+
+    this.pad.on('buttons', (buttons) => {
+      const isChanged = this.buttons.some((p, i) => {
+        return p !== buttons[i].pressed;
+      });
+      if (isChanged) {
+        this.buttons = buttons.map(b => b.pressed);
+        this.beat = 4 * (this.buttons[9] ? 2 : 1) * (this.buttons[8] ? 4 : 1) ;
+        this.interval(MINUTE / (this.bpm() * this.beat));
+        m.redraw();
+      }
+    });
+
   }
 
   onClick () {
