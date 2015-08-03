@@ -1,9 +1,8 @@
 'use strict';
 
-import gulp from 'gulp';
 import notifier from 'gulp-notify';
 
-export function error (title) {
+const error = function (title) {
   return (...args) => {
     notifier.onError({
       title   : 'Gulp : ' + title,
@@ -12,13 +11,15 @@ export function error (title) {
     .apply(this, args);
     this.emit('end');
   };
-}
+};
 
-export function ok (title, message) {
+const ok = function (title, message) {
   let n = notifier.notify({
     title   : title,
     message : message,
   });
   n.apply(this);
   this.emit('end');
-}
+};
+
+export default { error, ok };
