@@ -26,13 +26,11 @@ const babel = function (c) {
     fullPaths    : true,
   });
 
-  bundler.transform(
-    babelify.configure({ stage: 0 })
-  );
+  bundler.transform('babelify', { stage: 0 });
 
   console.log('#### browserify: rebuild');
 
-  return bundler.bundle()
+  bundler.bundle()
     .on('error', (err) => {
       console.error(err);
       notify.error('Compile error');

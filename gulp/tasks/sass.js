@@ -7,8 +7,8 @@ import gulpPlumber from 'gulp-plumber';
 import { sass as config } from '../config';
 
 export function sass () {
-  return gulp.src(config.src)
-    .pipe(gulpSass())
+   gulp.src(config.src)
     .pipe(gulpPlumber())
+    .pipe(gulpSass())
     .pipe(gulp.dest(config.dst));
 }
