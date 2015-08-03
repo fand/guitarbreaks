@@ -7,14 +7,4 @@ for (let [k, v]  of Object.entries(tasks)) {
   gulp.task(k, v);
 }
 
-gulp.task('dev', () => {
-  process.env.NODE_ENV = 'development';
-  gulp.start(['build', 'watch', 'serve']);
-});
-
-gulp.task('pro', () => {
-  process.env.NODE_ENV = 'production';
-  gulp.start(['build', 'pm2']);
-});
-
-gulp.task('default', ['dev']);
+gulp.task('default', ['watch']);

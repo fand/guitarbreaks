@@ -1,10 +1,10 @@
 'use strict';
 
-import bs from 'browser-sync';
+import bs_ from 'browser-sync';
+const bs = bs_.create('GuitarBreak');
+
+import { browserSync as config } from '../config';
 
 export function browserSync () {
-  bs({
-    proxy : 'localhost:8080',
-    open  : false,
-  });
+  bs.init(config);
 }

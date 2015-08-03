@@ -23,8 +23,11 @@ export default {
     sass : BASE('src/scss/**/*.scss'),
   },
 
-  pm2 : {
-    app : BASE('server.sh'),
+  browserSync : {
+    server : {
+      baseDir : BASE('public'),
+    },
+    files : [BASE('public/**/*')],
   },
 
 };
