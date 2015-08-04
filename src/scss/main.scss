@@ -82,3 +82,47 @@ html {
         background-color: #FF66DD;
     }
 }
+
+.Sampler {
+    background : #000033;
+    position :absolute;
+    top  : 160px;
+    left : 400px;
+    font-size: 18px;
+    line-height: 32px;
+    padding: 10px;
+
+    &__Header {
+        height : 48px;
+    }
+
+    &__KitName {
+        display : inline-block;
+        width : 120px;
+        vertical-align: bottom;
+    }
+    &__KitSelector {
+        display : inline-block;
+        width   : 170px;
+        vertical-align: middle;
+    }
+
+    &__Red   { color: #F88; }
+    &__Green { color: #8F8; }
+    &__Blue  { color: #88F; }
+
+    &__SampleNameLabel {
+        display : inline-block;
+        width : 120px;
+    }
+    &__SampleName {
+        display : inline-block;
+        width   : 160px;
+    }
+    &__Play {
+        display : inline-block;
+        width   : 20px;
+        color: #99eeFF;
+    }
+
+}
