@@ -27,25 +27,25 @@ export default {
 
   view : function (vm) {
     return m('.Gamepad', [
-      m('img.Gamepad__Guitar', { src : './image/guitar_plain.png' }),
+      m('img.Gamepad__Guitar', { src : './image/guitar.png' }),
       m('img.Gamepad__Red', {
-        src : './image/red_off.png',
+        src : './image/red.png',
         class : vm.pad.buttons[5].pressed ? 'on' : 'off',
       }),
       m('img.Gamepad__Green', {
-        src : './image/green_off.png',
+        src : './image/green.png',
         class : vm.pad.buttons[1].pressed ? 'on' : 'off',
       }),
       m('img.Gamepad__Blue', {
-        src : './image/blue_off.png',
+        src : './image/blue.png',
         class : vm.pad.buttons[0].pressed ? 'on' : 'off',
       }),
       m('img.Gamepad__Select', {
-        src : './image/button_off.png',
+        src : './image/select.png',
         class : vm.pad.buttons[9].pressed ? 'on' : 'off',
       }),
       m('img.Gamepad__Start', {
-        src : './image/button_off.png',
+        src : './image/start.png',
         class : vm.pad.buttons[8].pressed ? 'on' : 'off',
       }),
     ]);
