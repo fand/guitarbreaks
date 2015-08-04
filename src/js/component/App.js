@@ -10,6 +10,7 @@ import ctx from '../Ctx';
 
 import TimerComponent from './Timer';
 import GamepadComponent from './Gamepad';
+import SamplerComponent from './Sampler';
 import DistortionComponent from './Distortion';
 
 var App = {};
@@ -43,6 +44,7 @@ App.view = function (vm) {
   return [
     m.component(TimerComponent, { pad: vm.pad, callback: ::vm.playNotes }),
     m.component(GamepadComponent, { gamepad: vm.pad }),
+    m.component(SamplerComponent, { sampler: vm.guitar }),
     m.component(DistortionComponent, { distortionNode: vm.dist }),
   ];
 };
