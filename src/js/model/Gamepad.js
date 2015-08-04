@@ -8,7 +8,7 @@ const BUTTONS = gen(12, {pressed: false});
 
 class Gamepad extends EventEmitter {
 
-  constructor (simulate) {
+  constructor () {
     super();
 
     this.timer     = null;
@@ -16,7 +16,7 @@ class Gamepad extends EventEmitter {
 
     this.buttons = BUTTONS;
 
-    if (simulate) {
+    if (navigator.getGamepads()[0] == null) {
       this.simulate()
     }
     else {
