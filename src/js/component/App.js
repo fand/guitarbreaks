@@ -3,7 +3,7 @@
 import m from 'mithril';
 
 import Gamepad from '../model/Gamepad';
-import Guitar from '../model/Guitar';
+import Sampler from '../model/Sampler';
 import Distortion from '../model/Distortion';
 
 import ctx from '../Ctx';
@@ -20,10 +20,10 @@ class VM {
     this.interval   = m.prop(500);
 
     // models
-    this.pad    = new Gamepad(false);
-    this.guitar = new Guitar();
-    this.dist   = new Distortion();
-    this.guitar.connect(this.dist.input);
+    this.pad     = new Gamepad(false);
+    this.sampler = new Sampler();
+    this.dist    = new Distortion();
+    this.sampler.connect(this.dist.input);
     this.dist.connect(ctx.destination);
   }
 
@@ -32,7 +32,7 @@ class VM {
     this.pad.buttons.forEach((b, i) => {
       if (b.pressed) { buffer.push(i); }
     });
-    this.guitar.playNotes(buffer);
+    this.sampler.playNotes(buffer);
   }
 }
 
@@ -44,7 +44,7 @@ App.view = function (vm) {
   return [
     m.component(TimerComponent, { pad: vm.pad, callback: ::vm.playNotes }),
     m.component(GamepadComponent, { gamepad: vm.pad }),
-    m.component(SamplerComponent, { sampler: vm.guitar }),
+    m.component(SamplerComponent, { sampler: vm.sampler }),
     m.component(DistortionComponent, { distortionNode: vm.dist }),
   ];
 };

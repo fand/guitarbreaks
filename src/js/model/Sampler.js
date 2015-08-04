@@ -3,7 +3,7 @@
 import Sample from './Sample';
 import Node from './Node';
 
-class Guitar extends Node {
+class Sampler extends Node {
 
   constructor () {
     super();
@@ -48,4 +48,4 @@ class Guitar extends Node {
 
 }
 
-export default Guitar;
+export default Sampler;
