@@ -29,21 +29,9 @@ class Sampler extends Node {
       this.samples[1].play(); return;
     case 0:
       this.samples[2].play(); return;
-    case 9:
-      this.goLeft(); return;
-    case 8:
-      this.goRight(); return;
     default:
       return;
     }
-  }
-
-  goLeft () {
-
-  }
-
-  goRight () {
-
   }
 
 }
