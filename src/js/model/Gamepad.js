@@ -6,6 +6,14 @@ const THRESHOLD = -0.3;
 const gen = (n, e) => {let g_; return (g_ = (n, acc) => n <= 0 ? acc : g_(n-1, [...acc, e]))(n, [])};
 const BUTTONS = gen(12, {pressed: false});
 
+const KEYS = {
+  49 : 5,
+  50 : 1,
+  51 : 0,
+  17 : 9,
+  16 : 8,
+};
+
 class Gamepad extends EventEmitter {
 
   constructor () {
@@ -57,8 +65,8 @@ class Gamepad extends EventEmitter {
 
   simulate () {
     window.addEventListener('keydown', (e) => {
-      if (49 <= e.keyCode && e.keyCode <= 54) {
-        this.buttons[e.keyCode - 49] = { pressed: true };
+      if (KEYS[e.keyCode] != null) {
+        this.buttons[KEYS[e.keyCode]] = { pressed: true };
         this.emit('buttons', this.buttons);
       }
       if (e.keyCode === 40 && !this.isPlaying) {
@@ -67,8 +75,8 @@ class Gamepad extends EventEmitter {
       }
     });
     window.addEventListener('keyup', (e) => {
-      if (49 <= e.keyCode && e.keyCode <= 54) {
-        this.buttons[e.keyCode - 49] = { pressed: false };
+      if (KEYS[e.keyCode] != null) {
+        this.buttons[KEYS[e.keyCode]] = { pressed: false };
         this.emit('buttons', this.buttons);
       }
       if (e.keyCode === 40 && this.isPlaying) {
