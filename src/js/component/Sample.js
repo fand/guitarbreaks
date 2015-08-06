@@ -18,6 +18,10 @@ class SampleVM {
     this.sample.play();
   }
 
+  getSampleName () {
+    return this.sample.basename;
+  }
+
   drawWave (element, isInitialized, context) {
     if (isInitialized) { return; }
 
@@ -57,7 +61,7 @@ export default {
       class : vm.colorLabel,
     }, [
       m('.Sampler__Sample__NameLabel', vm.colorLabel),
-      m('.Sampler__Sample__Name', 'Kick.wav'),
+      m('.Sampler__Sample__Name', vm.getSampleName()),
       m('.Sampler__Sample__Play', {
         onclick : ::vm.onClickPlayButton,
       }, '>'),

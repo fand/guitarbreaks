@@ -19,6 +19,8 @@ class Sample extends Node {
   }
 
   loadSample (url) {
+    this.basename = url.split('/').pop();
+
     return new Promise((resolve, reject) => {
       var req = new XMLHttpRequest();
       req.open('GET', url, true);
