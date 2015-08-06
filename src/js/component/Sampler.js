@@ -10,6 +10,11 @@ class SamplerVM {
   getKitName () {
     return 'AMEN';
   }
+
+  onClickPlayButton (index) {
+    console.log('>>>>>>>>>>>');
+    this.sampler.playNotes([index]);
+  }
 }
 
 export default {
@@ -29,17 +34,23 @@ export default {
         m('.Sampler__Red', [
           m('.Sampler__SampleNameLabel', 'Red'),
           m('.Sampler__SampleName', 'Kick.wav'),
-          m('.Sampler__Play', '➤'),
+          m('.Sampler__Play', {
+            onclick : () => vm.onClickPlayButton(5),
+          }, '>'),
         ]),
         m('.Sampler__Green', [
           m('.Sampler__SampleNameLabel', 'Green'),
           m('.Sampler__SampleName', 'Snare.wav'),
-          m('.Sampler__Play', '➤'),
+          m('.Sampler__Play', {
+            onclick : () => vm.onClickPlayButton(1),
+          }, '>'),
         ]),
         m('.Sampler__Blue', [
           m('.Sampler__SampleNameLabel', 'Blue'),
           m('.Sampler__SampleName', 'Crash.wav'),
-          m('.Sampler__Play', '➤'),
+          m('.Sampler__Play', {
+            onclick : () => vm.onClickPlayButton(0),
+          }, '>'),
         ]),
       ]),
     ]);
