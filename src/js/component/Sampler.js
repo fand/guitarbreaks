@@ -2,6 +2,8 @@
 
 import m from 'mithril';
 
+import Sample from './Sample';
+
 class SamplerVM {
   constructor (sampler) {
     this.sampler = sampler;
@@ -9,10 +11,6 @@ class SamplerVM {
 
   getKitName () {
     return 'AMEN';
-  }
-
-  onClickPlayButton (index) {
-    this.sampler.playNotes([index]);
   }
 }
 
@@ -30,27 +28,21 @@ export default {
         ]),
       ]),
       m('.Sampler__Body', [
-        m('.Sampler__Red', [
-          m('.Sampler__SampleNameLabel', 'Red'),
-          m('.Sampler__SampleName', 'Kick.wav'),
-          m('.Sampler__Play', {
-            onclick : () => vm.onClickPlayButton(0),
-          }, '>'),
-        ]),
-        m('.Sampler__Green', [
-          m('.Sampler__SampleNameLabel', 'Green'),
-          m('.Sampler__SampleName', 'Snare.wav'),
-          m('.Sampler__Play', {
-            onclick : () => vm.onClickPlayButton(1),
-          }, '>'),
-        ]),
-        m('.Sampler__Blue', [
-          m('.Sampler__SampleNameLabel', 'Blue'),
-          m('.Sampler__SampleName', 'Crash.wav'),
-          m('.Sampler__Play', {
-            onclick : () => vm.onClickPlayButton(2),
-          }, '>'),
-        ]),
+        m.component(Sample, {
+          sample : vm.sampler.samples[0],
+          color  : 'Red',
+          index  : 0,
+        }),
+        m.component(Sample, {
+          sample : vm.sampler.samples[1],
+          color  : 'Green',
+          index  : 1,
+        }),
+        m.component(Sample, {
+          sample : vm.sampler.samples[2],
+          color  : 'Blue',
+          index  : 2,
+        }),
       ]),
     ]);
   }
