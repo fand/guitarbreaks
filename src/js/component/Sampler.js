@@ -12,7 +12,6 @@ class SamplerVM {
   }
 
   onClickPlayButton (index) {
-    console.log('>>>>>>>>>>>');
     this.sampler.playNotes([index]);
   }
 }
