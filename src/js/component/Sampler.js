@@ -29,19 +29,22 @@ export default {
       ]),
       m('.Sampler__Body', [
         m.component(Sample, {
-          sample : vm.sampler.samples[0],
-          color  : 'Red',
-          index  : 0,
+          sample     : vm.sampler.samples[0],
+          colorLabel : 'Red',
+          color      : '#F88',
+          index      : 0,
         }),
         m.component(Sample, {
-          sample : vm.sampler.samples[1],
-          color  : 'Green',
-          index  : 1,
+          sample     : vm.sampler.samples[1],
+          colorLabel : 'Green',
+          color      : '#8F8',
+          index      : 1,
         }),
         m.component(Sample, {
-          sample : vm.sampler.samples[2],
-          color  : 'Blue',
-          index  : 2,
+          sample     : vm.sampler.samples[2],
+          colorLabel : 'Blue',
+          color      : '#88F',
+          index      : 2,
         }),
       ]),
     ]);

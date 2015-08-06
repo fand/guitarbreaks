@@ -1,6 +1,7 @@
 html {
     color      : white;
     background : black;
+    font-weight: bold;
 }
 
 .Distortion {
@@ -108,22 +109,47 @@ html {
     }
 
     &__Sample {
-        &.Red   { color: #F88; }
-        &.Green { color: #8F8; }
-        &.Blue  { color: #88F; }
+        position : relative;
+        display  : block;
+        height   : 44px;
+        width    : 320px;
+        padding: 10px;
+        margin :10px;
+
+        color : #333;
+        text-shadow : 0 0 3px #FFF;
+
+        z-index: 1;
+
+        &.Red   { background-color: #F88; }
+        &.Green { background-color: #8D8; }
+        &.Blue  { background-color: #88F; }
 
         &__NameLabel {
             display : inline-block;
             width : 120px;
+            z-index: 3;
         }
         &__Name {
             display : inline-block;
             width   : 160px;
+            z-index: 3;
         }
         &__Play {
-            display : inline-block;
-            width   : 20px;
-            color: #99eeFF;
+            display          : inline-block;
+            width            : 40px;
+            color            : #99eeFF;
+            z-index          : 3;
+            background-color : #888;
+        }
+        &__Wave {
+            position : absolute;
+            top      : 0;
+            left     : 0;
+            width    : 100%;
+            height   : 100%;
+            opacity  : 0.4;
+            z-index : -1;
         }
     }
 }
