@@ -22,16 +22,8 @@ class Sampler extends Node {
   }
 
   playNote (note) {
-    switch (note) {
-    case 5:
-      this.samples[0].play(); return;
-    case 1:
-      this.samples[1].play(); return;
-    case 0:
-      this.samples[2].play(); return;
-    default:
-      return;
-    }
+    if (!this.samples[note]) { return; }
+    this.samples[note].play();
   }
 
 }

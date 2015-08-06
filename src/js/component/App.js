@@ -13,6 +13,12 @@ import GamepadComponent from './Gamepad';
 import SamplerComponent from './Sampler';
 import DistortionComponent from './Distortion';
 
+const BUTTON2NUM = {
+  5 : 0,
+  1 : 1,
+  0 : 2,
+};
+
 var App = {};
 
 class VM {
@@ -30,7 +36,9 @@ class VM {
   playNotes () {
     let buffer = [];
     this.pad.buttons.forEach((b, i) => {
-      if (b.pressed) { buffer.push(i); }
+      if (b.pressed) {
+        buffer.push(BUTTON2NUM[i]);
+      }
     });
     this.sampler.playNotes(buffer);
   }

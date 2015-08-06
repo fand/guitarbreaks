@@ -34,7 +34,7 @@ export default {
           m('.Sampler__SampleNameLabel', 'Red'),
           m('.Sampler__SampleName', 'Kick.wav'),
           m('.Sampler__Play', {
-            onclick : () => vm.onClickPlayButton(5),
+            onclick : () => vm.onClickPlayButton(0),
           }, '>'),
         ]),
         m('.Sampler__Green', [
@@ -48,7 +48,7 @@ export default {
           m('.Sampler__SampleNameLabel', 'Blue'),
           m('.Sampler__SampleName', 'Crash.wav'),
           m('.Sampler__Play', {
-            onclick : () => vm.onClickPlayButton(0),
+            onclick : () => vm.onClickPlayButton(2),
           }, '>'),
         ]),
       ]),
