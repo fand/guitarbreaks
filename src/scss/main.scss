@@ -107,22 +107,23 @@ html {
         vertical-align: middle;
     }
 
-    &__Red   { color: #F88; }
-    &__Green { color: #8F8; }
-    &__Blue  { color: #88F; }
+    &__Sample {
+        &.Red   { color: #F88; }
+        &.Green { color: #8F8; }
+        &.Blue  { color: #88F; }
 
-    &__SampleNameLabel {
-        display : inline-block;
-        width : 120px;
+        &__NameLabel {
+            display : inline-block;
+            width : 120px;
+        }
+        &__Name {
+            display : inline-block;
+            width   : 160px;
+        }
+        &__Play {
+            display : inline-block;
+            width   : 20px;
+            color: #99eeFF;
+        }
     }
-    &__SampleName {
-        display : inline-block;
-        width   : 160px;
-    }
-    &__Play {
-        display : inline-block;
-        width   : 20px;
-        color: #99eeFF;
-    }
-
 }
