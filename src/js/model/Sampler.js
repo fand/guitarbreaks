@@ -3,7 +3,7 @@
 import Sample from './Sample';
 import Node from './Node';
 
-class Guitar extends Node {
+class Sampler extends Node {
 
   constructor () {
     super();
@@ -22,30 +22,10 @@ class Guitar extends Node {
   }
 
   playNote (note) {
-    switch (note) {
-    case 5:
-      this.samples[0].play(); return;
-    case 1:
-      this.samples[1].play(); return;
-    case 0:
-      this.samples[2].play(); return;
-    case 9:
-      this.goLeft(); return;
-    case 8:
-      this.goRight(); return;
-    default:
-      return;
-    }
-  }
-
-  goLeft () {
-
-  }
-
-  goRight () {
-
+    if (!this.samples[note]) { return; }
+    this.samples[note].play();
   }
 
 }
 
-export default Guitar;
+export default Sampler;

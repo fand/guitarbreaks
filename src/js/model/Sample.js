@@ -6,7 +6,8 @@ class Sample extends Node {
 
   constructor (url) {
     super();
-    this.loadSample(url).then(buffer => this.buffer = buffer);
+    this.isLoaded = this.loadSample(url)
+      .then(buffer => this.buffer = buffer);
   }
 
   play () {
@@ -18,6 +19,8 @@ class Sample extends Node {
   }
 
   loadSample (url) {
+    this.basename = url.split('/').pop();
+
     return new Promise((resolve, reject) => {
       var req = new XMLHttpRequest();
       req.open('GET', url, true);
@@ -33,6 +36,12 @@ class Sample extends Node {
       };
 
       req.send();
+    });
+  }
+
+  getWaveData () {
+    return this.isLoaded.then(() => {
+      return this.buffer.getChannelData(0);
     });
   }
 
