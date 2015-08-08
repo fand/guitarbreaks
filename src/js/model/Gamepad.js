@@ -24,12 +24,14 @@ class Gamepad extends EventEmitter {
 
     this.buttons = BUTTONS;
 
-    if (navigator.getGamepads()[0] == null) {
-      this.simulate()
-    }
-    else {
-      this.startPolling();
-    }
+    this.isSimulating = false;
+
+    this.simulate()
+    this.startPolling();
+  }
+
+  toggleSimulate () {
+    this.isSimulating = !this.isSimulating;
   }
 
   startPolling () {
@@ -41,6 +43,7 @@ class Gamepad extends EventEmitter {
   }
 
   poll () {
+    if (this.isSimulating) { return; }
     const candidates = navigator.getGamepads();
     if (!candidates || candidates.length === 0) { return; }
     const pads = Object.keys(candidates).map(k => candidates[k]).filter(p => p);
@@ -65,6 +68,7 @@ class Gamepad extends EventEmitter {
 
   simulate () {
     window.addEventListener('keydown', (e) => {
+      if (!this.isSimulating) { return false; }
       if (KEYS[e.keyCode] != null) {
         this.buttons[KEYS[e.keyCode]] = { pressed: true };
         this.emit('buttons', this.buttons);
@@ -75,6 +79,7 @@ class Gamepad extends EventEmitter {
       }
     });
     window.addEventListener('keyup', (e) => {
+      if (!this.isSimulating) { return false; }
       if (KEYS[e.keyCode] != null) {
         this.buttons[KEYS[e.keyCode]] = { pressed: false };
         this.emit('buttons', this.buttons);

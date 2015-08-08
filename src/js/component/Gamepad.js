@@ -18,6 +18,10 @@ class VM {
       }
     });
   }
+
+  toggleSimulate () {
+    this.pad.toggleSimulate();
+  }
 }
 
 export default {
@@ -48,6 +52,9 @@ export default {
         src : './image/start.png',
         class : vm.pad.buttons[8].pressed ? 'on' : 'off',
       }),
+      m('Gamepad__SimulateButton', {
+        onclick: ::vm.toggleSimulate,
+      }, 'simulati'),
     ]);
   }
 };
