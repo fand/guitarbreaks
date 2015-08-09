@@ -50,11 +50,17 @@ App.controller = function() {
 
 App.view = function (vm) {
   return [
-    m('.Title', 'GuitarBreaks'),
-    m.component(TimerComponent, { pad: vm.pad, callback: ::vm.playNotes }),
-    m.component(GamepadComponent, { gamepad: vm.pad }),
-    m.component(SamplerComponent, { sampler: vm.sampler }),
-    m.component(DistortionComponent, { distortionNode: vm.dist }),
+    m('LeftColumn', [
+      m.component(GamepadComponent, { gamepad: vm.pad }),
+    ]),
+    m('RightColumn', [
+      m('.Title', 'GuitarBreaks'),
+      m.component(SamplerComponent, { sampler: vm.sampler }),
+      m.component(DistortionComponent, { distortionNode: vm.dist }),
+      m.component(TimerComponent, {
+        pad: vm.pad, callback: ::vm.playNotes,
+      }),
+    ]),
   ];
 };
 

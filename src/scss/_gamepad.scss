@@ -1,0 +1,48 @@
+.Gamepad {
+    position         : absolute;
+    display          : block;
+    height           : 100%;
+    max-width        : 400px;
+    top              : 0;
+    left             : 0;
+    background-color : #000800;
+
+    &__Guitar {
+        opacity   : 0.7;
+        height: 100%;
+    }
+
+    %Button {
+        position : absolute;
+        top    : 0;
+        left   : 0;
+        height : 100%;
+        -webkit-filter : brightness(1.6);
+
+        &.on  { opacity : 1.0; }
+        &.off { opacity : 0.0; }
+    }
+
+    %NeckButton {
+        @extend %Button;
+    }
+    &__Red {
+        @extend %NeckButton;
+    }
+    &__Green {
+        @extend %NeckButton;
+    }
+    &__Blue {
+        @extend %NeckButton;
+    }
+
+    %BodyButton {
+        @extend %Button;
+    }
+    &__Select {
+        @extend %BodyButton;
+    }
+    &__Start {
+        @extend %BodyButton;
+    }
+}

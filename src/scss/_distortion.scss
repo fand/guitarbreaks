@@ -1,0 +1,13 @@
+.Distortion {
+    background: #333;
+
+    .indicator {
+        display : block;
+        border  : 1px solid black;
+        width   : 10px;
+        height  : 10px;
+
+        &.on  { background: red; }
+        &.off { background: gray; }
+    }
+}
