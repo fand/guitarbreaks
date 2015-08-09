@@ -1,11 +1,8 @@
 .Sampler {
-    background : #000033;
-    position :absolute;
-    top  : 160px;
-    left : 400px;
-    font-size: 18px;
-    line-height: 32px;
-    padding: 10px;
+    background  : #000033;
+    font-size   : 18px;
+    line-height : 32px;
+    padding     : 10px;
 
     &__Header {
         height : 48px;
