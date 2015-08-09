@@ -1,20 +1,25 @@
 .Gamepad {
-    position         : absolute;
-    display          : block;
-    height           : 100%;
-    max-width        : 400px;
+    // position         : absolute;
+    // height           : 100%;
+    // max-width        : 400px
+    max-height : 100%;
+    max-width  : 400px;
     background-color : #000800;
 
     &__Guitar {
-        opacity   : 0.7;
-        height: 100%;
+        position : absolute;
+        top      : 0;
+        left     : 0;
+        height   : 90%;
+        opacity  : 0.7;
     }
 
     %Button {
         position : absolute;
-        top    : 0;
-        left   : 0;
-        height : 100%;
+        top      : 0;
+        left     : 0;
+        height   : 90%;
+
         -webkit-filter : brightness(1.6);
 
         &.on  { opacity : 1.0; }
@@ -42,5 +47,11 @@
     }
     &__Start {
         @extend %BodyButton;
+    }
+
+    &__SimulateButton {
+        position : absolute;
+        top      : 90%;
+        height   : 56px;
     }
 }
