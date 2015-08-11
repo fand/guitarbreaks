@@ -1,11 +1,11 @@
 .Distortion {
-    .indicator {
-        display : block;
-        border  : 1px solid black;
-        width   : 10px;
-        height  : 10px;
+    ul {
+        list-style-type: none;
+        padding-left : 20px;
+    }
 
-        &.on  { background: red; }
-        &.off { background: gray; }
+    div {
+        display: inline-block;
+        width : 110px;
     }
 }

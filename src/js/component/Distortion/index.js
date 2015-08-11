@@ -33,12 +33,6 @@ export default {
           }),
         ]),
       ]),
-      m('.indicator', {
-        class : vm.node.isOn ? 'on' :'off'
-      }),
-      m('button', {
-        onclick : :: vm.toggle,
-      }, 'toggle')
     ]);
   }
 
