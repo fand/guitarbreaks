@@ -50,11 +50,17 @@
             z-index: 3;
         }
         &__Play {
-            display          : inline-block;
-            width            : 40px;
-            color            : #99eeFF;
-            z-index          : 3;
-            background-color : #888;
+            display : inline-block;
+            width   : 40px;
+            z-index : 3;
+            cursor  : pointer;
+            text-align: center;
+
+            color : #000;
+            &:hover {
+                color : #ddd;
+                text-shadow : 0 0 5px #333;
+            }
         }
         &__Wave {
             position : absolute;
