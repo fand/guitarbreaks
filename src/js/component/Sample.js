@@ -1,6 +1,7 @@
 'use strict';
 
 import m from 'mithril';
+import Distortion from './Distortion';
 
 const CANVAS_WIDTH  = 512;
 const CANVAS_HEIGHT = 256;
@@ -8,6 +9,7 @@ const CANVAS_HEIGHT = 256;
 class SampleVM {
   constructor (args) {
     this.sample     = args.sample;
+    this.distortion = args.distortion;
     this.index      = args.index;
     this.callback   = args.callback;
     this.colorLabel = args.colorLabel;
@@ -49,6 +51,7 @@ class SampleVM {
       ctx.translate(0, -h/2);
     });
   }
+
 }
 
 export default {
@@ -66,8 +69,11 @@ export default {
         onclick : ::vm.onClickPlayButton,
       }, '➤'),
       m('canvas.Sampler__Sample__Wave', {
-        config: ::vm.drawWave
-      })
+        config: ::vm.drawWave,
+      }),
+      m.component(Distortion, {
+        distortionNode : vm.distortion,
+      }),
     ]);
   },
 
