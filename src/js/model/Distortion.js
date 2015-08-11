@@ -34,18 +34,14 @@ class Distortion extends Node {
   updateTable () {
     if ((this.distortion >= 1) && (this.distortion < 3)) {
       const FINE = 2048;
+      const HALF = FINE / 2;
       let table  = new Float32Array(FINE);
 
-      // let k = 2 * this.distortion / (1 - this.distortion);
+      const biased = Math.pow(this.distortion, 5);
       for (var i = 0; i < FINE; i++) {
-        // LINEAR INTERPOLATION: x := (c - a) * (z - y) / (b - a) + y
-        // a = 0, b = 2048, z = 1, y = -1, c = i
-        // var x = (i - 0) * (1 - (-1)) / (FINE - 0) + (-1);
-        // table[i] = (1 + k) * x / (1+ k * Math.abs(x));
-
-        let x = i - FINE / 2;
-        let y = this.distortion * x;
-        table[i] = Math.max(Math.max(y, 1.0), -1.0);
+        let x = i - HALF;
+        let y = biased * x / HALF;
+        table[i] = Math.max(Math.min(y, 1.0), -1.0);
       }
 
       this.waveshaper.curve = table;
