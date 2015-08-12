@@ -1,7 +1,6 @@
 'use strict';
 
 import m from 'mithril';
-import Distortion from './Distortion';
 
 const CANVAS_WIDTH  = 512;
 const CANVAS_HEIGHT = 256;
@@ -17,6 +16,7 @@ class SampleVM {
 
     this.distortion = m.prop(10000);
     this.volume     = m.prop(3000);
+    this.pitch      = m.prop(10000);
   }
 
   onClickPlayButton () {
@@ -35,6 +35,11 @@ class SampleVM {
   onChangeVolume (e) {
     this.volume(e.target.value);
     this.distortionNode.setVolume(e.target.value / 10000.0);
+  }
+
+  onChangePitch (e) {
+    this.pitch(e.target.value);
+    this.sampleNode.setPlaybackRate(e.target.value / 10000.0);
   }
 
   drawWave (element, isInitialized, context) {
@@ -101,6 +106,16 @@ export default {
             max      : 10000,
             onchange : ::vm.onChangeVolume,
             value    : vm.volume()
+          }),
+        ]),
+        m('.Sample__FXs__FX', [
+          m('.Sample__FXs__FX__Label', 'pitch'),
+          m('input.Sample__FXs__FX__Input', {
+            type     : 'range',
+            min      : 0,
+            max      : 20000,
+            onchange : ::vm.onChangePitch,
+            value    : vm.pitch()
           }),
         ]),
       ]),
