@@ -73,17 +73,16 @@
         }
 
         &__FXs {
+            margin : 10px;
 
             &__FX {
-                padding-left : 20px;
-
                 &__Label {
                     display: inline-block;
                     width : 130px;
                 }
                 &__Input {
                     display: inline-block;
-                    width : auto;
+                    width : 320px;
                 }
             }
         }
