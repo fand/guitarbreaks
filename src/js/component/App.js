@@ -11,7 +11,7 @@ import ctx from '../Ctx';
 import TimerComponent from './Timer';
 import GamepadComponent from './Gamepad';
 import SamplerComponent from './Sampler';
-import DistortionComponent from './Distortion';
+import MasterDistortionComponent from './MasterDistortion';
 
 const BUTTON2NUM = {
   5 : 0,
@@ -57,7 +57,7 @@ App.view = function (vm) {
       m('.RightColumn', [
         m('.Title', 'GuitarBreaks'),
         m.component(SamplerComponent, { sampler: vm.sampler }),
-        m.component(DistortionComponent, { distortionNode: vm.dist }),
+        m.component(MasterDistortionComponent, { distortionNode: vm.dist }),
         m.component(TimerComponent, {
           pad: vm.pad, callback: ::vm.playNotes,
         }),

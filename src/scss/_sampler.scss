@@ -22,13 +22,13 @@
         vertical-align: middle;
     }
 
-    &__Sample {
+    .Sample {
         position : relative;
         display  : block;
-        height   : 44px;
-        width    : 320px;
-        padding: 10px;
-        margin :10px;
+        height   : 120px;
+        width    : auto;
+        padding  : 10px 20px;
+        margin   : 10px;
 
         color : #333;
         text-shadow : 0 0 3px #FFF;
@@ -41,17 +41,17 @@
 
         &__NameLabel {
             display : inline-block;
-            width : 120px;
+            width : 140px;
             z-index: 3;
         }
         &__Name {
             display : inline-block;
-            width   : 160px;
+            width   : 280px;
             z-index: 3;
         }
         &__Play {
             display : inline-block;
-            width   : 40px;
+            width   : 60px;
             z-index : 3;
             cursor  : pointer;
             text-align: center;
@@ -71,5 +71,21 @@
             opacity  : 0.4;
             z-index : -1;
         }
+
+        &__FXs {
+            margin : 10px;
+
+            &__FX {
+                &__Label {
+                    display: inline-block;
+                    width : 130px;
+                }
+                &__Input {
+                    display: inline-block;
+                    width : 320px;
+                }
+            }
+        }
+
     }
 }

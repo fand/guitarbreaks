@@ -1,6 +1,7 @@
 'use strict';
 
 import Sample from './Sample';
+import Distortion from './Distortion';
 import Node from './Node';
 
 class Sampler extends Node {
@@ -14,7 +15,14 @@ class Sampler extends Node {
       new Sample('./wav/kick_crash.wav'),
     ];
 
-    this.samples.forEach(s => s.connect(this.wet));
+    this.distortions = [
+      new Distortion(),
+      new Distortion(),
+      new Distortion(),
+    ];
+
+    this.samples.forEach((s, i) => s.connect(this.distortions[i].input));
+    this.distortions.forEach(d => d.connect(this.wet));
   }
 
   playNotes (notes) {

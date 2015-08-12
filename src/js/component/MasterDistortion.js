@@ -2,7 +2,7 @@
 
 import m from 'mithril';
 
-class VM {
+class MasterDistortionVM {
 
   constructor (node) {
     this.node = node;
@@ -21,18 +21,20 @@ class VM {
     this.node.setVolume(e.target.value / 10000.0);
   }
 
-  toggle (e) {
+  toggle () {
     this.node.toggle();
   }
+
 }
 
 export default {
+
   controller : function (args) {
-    return new VM(args.distortionNode);
+    return new MasterDistortionVM(args.distortionNode);
   },
 
   view : function (vm) {
-    return m('.Distortion', [
+    return m('.MasterDistortion', [
       m('ul', [
         m('li', [
           m('div', 'distortion'),
@@ -63,4 +65,5 @@ export default {
       }, 'toggle')
     ]);
   }
+
 };
