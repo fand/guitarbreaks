@@ -1,7 +1,6 @@
 'use strict';
 
 import m from 'mithril';
-import Distortion from './Distortion';
 
 const CANVAS_WIDTH  = 512;
 const CANVAS_HEIGHT = 256;
