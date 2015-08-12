@@ -22,7 +22,7 @@
         vertical-align: middle;
     }
 
-    &__Sample {
+    .Sample {
         position : relative;
         display  : block;
         height   : 120px;
@@ -71,5 +71,22 @@
             opacity  : 0.4;
             z-index : -1;
         }
+
+        &__FXs {
+
+            &__FX {
+                padding-left : 20px;
+
+                &__Label {
+                    display: inline-block;
+                    width : 130px;
+                }
+                &__Input {
+                    display: inline-block;
+                    width : auto;
+                }
+            }
+        }
+
     }
 }
