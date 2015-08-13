@@ -50,21 +50,19 @@ class SampleVM {
       const rect = element.getBoundingClientRect();
       const [w, h] = [rect.width, rect.height];
 
-      ctx.lineWidth = 2
+      ctx.lineWidth = 0.3;
+      ctx.strokeStyle = '#FFF';
 
       // Draw waveform
-      ctx.translate(0, h);
+      ctx.translate(0, h * 0.5);
       ctx.beginPath();
 
-      const d = wave.length / w
-      for (let x = 0; x < w; x++) {
-        ctx.lineTo(x, wave[Math.floor(x * d)] * h * 1.2);
+      const d = w / wave.length;
+      for (let i = 0; i < wave.length; i++) {
+        ctx.lineTo(i * d, wave[i] * h * 0.8);
       }
 
-      ctx.closePath();
-      ctx.strokeStyle = '#FFF';
       ctx.stroke();
-      ctx.translate(0, -h/2);
     });
   }
 
