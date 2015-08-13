@@ -1,14 +1,14 @@
 @import 'mixins';
 
 .Sampler {
-    background  : #000033;
     font-size   : 18px;
     line-height : 32px;
     padding     : 10px;
     @include user-select(none);
 
     &__Header {
-        height : 48px;
+        height : 36px;
+        padding: 20px 0 10px;
     }
 
     &__KitName {
@@ -28,7 +28,8 @@
         height   : 150px;
         width    : auto;
         padding  : 10px 20px;
-        margin   : 10px;
+        margin   : 10px 0;
+        border-radius: 2px;
 
         color : #333;
         text-shadow : 0 0 3px #FFF;
