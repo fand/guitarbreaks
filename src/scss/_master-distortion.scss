@@ -1,12 +1,9 @@
+@import 'right';
+
 .MasterDistortion {
-    position   : relative;
-    display    : block;
+    @extend %RightElement;
     height     : 120px;
-    width      : auto;
-    padding    : 10px 20px;
-    margin     : 10px 0;
     background : #666666;
-    border-radius: 2px;
 
     &__Toggle {
         display       : inline-block;

@@ -1,3 +1,5 @@
+@import 'right';
+
 .Sampler {
 
     &__Header {
@@ -17,16 +19,10 @@
     }
 
     .Sample {
-        position : relative;
-        display  : block;
-        height   : 150px;
-        width    : auto;
-        padding  : 10px 20px;
-        margin   : 10px 0;
-        border-radius: 2px;
-
-        color : #333;
-        text-shadow : 0 0 3px #FFF;
+        @extend %RightElement;
+        height      : 150px;
+        color       : #333333;
+        text-shadow : 0 0 3px #FFFFFF;
 
         z-index: 1;
 
