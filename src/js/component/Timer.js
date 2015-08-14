@@ -63,11 +63,17 @@ export default {
 
   view : function (vm) {
     return m('.Timer', [
-      m('.Timer__BPM', vm.bpm()),
-      m('.Timer__Interval', vm.interval()),
+      m('.Timer__Row', [
+        m('.Timer__Row__Label', 'BPM'),
+        m('.Timer__Row__Value', vm.bpm()|0),
+      ]),
+      m('.Timer__Row', [
+        m('.Timer__Row__Label', 'Interval'),
+        m('.Timer__Row__Value', vm.interval() + ' msec'),
+      ]),
       m('.Timer__TapButton', {
         onclick: ::vm.onClick
-      }),
+      }, 'TAP'),
     ]);
   }
 };

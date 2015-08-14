@@ -1,18 +1,52 @@
-.Timer {
-    width  : 100%;
-    height : 200px;
-    background-color: #eef;
-    color: #FF8888;
+@import 'right';
 
-    &__BPM {
+.Timer {
+    @extend %RightElement;
+
+    height : 120px;
+    background-color: #EEEEFF;
+    color: #FF8866;
+
+    &__Row {
         display: block;
+        margin-left: 250px;
+        margin-top: 17px;
+        margin-bottom: 15px;
+        &__Label {
+            display: inline-block;
+            width: 90px;
+        }
+        &__Value {
+            display: inline-block;
+            width: 180px;
+        }
     }
-    &__Interval {
-        display: block;
-    }
+
     &__TapButton {
-        width: 200px;
-        height:120px;
-        background-color: #FF66DD;
+        position : absolute;
+        top      : 0;
+        left     : 0;
+        margin   : 20px;
+        width    : 208px;
+        height   : 98px;
+        cursor   : pointer;
+
+        border        : 1px solid #8888AA;
+        border-radius : 2px;
+
+        color          : #8888AA;
+        font-size      : 22px;
+        line-height    : 90px;
+        text-align     : center;
+        vertical-align : middle;
+
+        &:hover {
+            color  : #FF8866;
+            border : 1px solid #FF8866;
+            background: #FFF8FF;
+        }
+        &:active {
+            background: #8888AA;
+        }
     }
 }
