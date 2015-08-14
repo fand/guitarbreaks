@@ -1,10 +1,4 @@
-@import 'mixins';
-
 .Sampler {
-    font-size   : 18px;
-    line-height : 32px;
-    padding     : 10px;
-    @include user-select(none);
 
     &__Header {
         height : 36px;

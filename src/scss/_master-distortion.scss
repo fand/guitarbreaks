@@ -1,13 +1,41 @@
 .MasterDistortion {
-    background: #333;
+    position   : relative;
+    display    : block;
+    height     : 120px;
+    width      : auto;
+    padding    : 10px 20px;
+    margin     : 10px 0;
+    background : #666666;
+    border-radius: 2px;
 
-    .indicator {
-        display : block;
-        border  : 1px solid black;
-        width   : 10px;
-        height  : 10px;
+    &__Toggle {
+        display       : inline-block;
+        width         : 14px;
+        height        : 14px;
+        border-radius : 3px;
+        cursor        : pointer;
 
-        &.on  { background: red; }
-        &.off { background: gray; }
+        &.on  { background: #88FF88; }
+        &.off { background: #000000; }
+    }
+
+    &__Label {
+        display : inline-block;
+        margin-left: 10px;
+    }
+
+    &__FXs {
+        margin : 10px;
+
+        &__FX {
+            &__Label {
+                display: inline-block;
+                width : 130px;
+            }
+            &__Input {
+                display: inline-block;
+                width : 320px;
+            }
+        }
     }
 }

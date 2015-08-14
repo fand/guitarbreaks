@@ -35,10 +35,15 @@ export default {
 
   view : function (vm) {
     return m('.MasterDistortion', [
-      m('ul', [
-        m('li', [
-          m('div', 'distortion'),
-          m('input', {
+      m('.MasterDistortion__Toggle', {
+        class : vm.node.isOn ? 'on' :'off',
+        onclick : :: vm.toggle,
+      }),
+      m('.MasterDistortion__Label', 'MasterFX'),
+      m('.MasterDistortion__FXs', [
+        m('.MasterDistortion__FXs__FX', [
+          m('.MasterDistortion__FXs__FX__Label', 'distortion'),
+          m('input.MasterDistortion__FXs__FX__Input', {
             type     : 'range',
             min      : 10000,
             max      : 30000,
@@ -46,9 +51,9 @@ export default {
             value    : vm.distortion()
           }),
         ]),
-        m('li', [
-          m('div', 'volume'),
-          m('input', {
+        m('.MasterDistortion__FXs__FX', [
+          m('.MasterDistortion__FXs__FX__Label', 'volume'),
+          m('input.MasterDistortion__FXs__FX__Input', {
             type     : 'range',
             min      : 0,
             max      : 10000,
@@ -57,12 +62,6 @@ export default {
           }),
         ]),
       ]),
-      m('.indicator', {
-        class : vm.node.isOn ? 'on' :'off'
-      }),
-      m('button', {
-        onclick : :: vm.toggle,
-      }, 'toggle')
     ]);
   }
 
