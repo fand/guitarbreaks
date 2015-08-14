@@ -21,6 +21,7 @@ class VM {
 
   toggleSimulate () {
     this.pad.toggleSimulate();
+    console.log(this.pad.isSimulating);
   }
 }
 
@@ -53,8 +54,9 @@ export default {
         class : vm.pad.buttons[8].pressed ? 'on' : 'off',
       }),
       m('.Gamepad__SimulateButton', {
+        class :  vm.pad.isSimulating ? '.Gamepad__SimulateButton--on' : '',
         onclick: ::vm.toggleSimulate,
-      }, 'simulati'),
+      }, 'Simulation : ' + (vm.pad.isSimulating ? 'ON' : 'OFF')),
     ]);
   }
 };

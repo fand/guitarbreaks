@@ -1,11 +1,13 @@
 .Gamepad {
-    position   : absolute;
-    width      : 100%;
+    position   : relative;
+    max-width  : 360px;
+    height     : 100%;
+    margin     : 0 20px;
     background : #000800;
 
     %Guitar {
         position : absolute;
-        top      : 0;
+        top      : 20px;
         left     : 0;
         width    : 100%;
     }
@@ -47,8 +49,21 @@
     }
 
     &__SimulateButton {
-        position : absolute;
-        top      : 90%;
-        height   : 56px;
+        position    : absolute;
+        bottom      : 50px;
+        left        : 0;
+        height      : 50px;
+        width       : 180px;
+        font-size: 16px;
+        line-height : 50px;
+        text-align  : center;
+        text-shadow: 0 0 5px #000000;
+        cursor : pointer;
+
+        &:hover {
+            background: rgba(255,255,255,0.1);
+            border-radius : 40px 10px;
+            text-shadow: 0 0 5px #FF8888;
+        }
     }
 }

@@ -20,17 +20,18 @@ html {
     top      : 0;
     left     : 0;
     width    : 400px;
+    height   : 100%;
 }
 
 .RightColumn {
     position : absolute;
     top      : 0;
     left     : 400px;
-    width    : 540px;
+    width    : 560px;
+    height   : 100%;
 
     font-size   : 18px;
     line-height : 32px;
-    padding     : 10px;
     @include user-select(none);
 }
 
@@ -38,6 +39,8 @@ html {
     position  : relative;
     height    : 72px;
     font-size : 48px;
+    line-height: 72px;
+    vertical-align: bottom;
 }
 
 @import 'gamepad';
