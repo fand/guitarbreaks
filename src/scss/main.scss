@@ -10,6 +10,7 @@ html {
     position    : absolute;
     width       : 960px;
     height      : 100%;
+    top         : 0;
     left        : 50%;
     margin-left : -480px;
 }
@@ -19,15 +20,13 @@ html {
     top      : 0;
     left     : 0;
     width    : 400px;
-    height   : 100%;
 }
 
 .RightColumn {
     position : absolute;
     top      : 0;
     left     : 400px;
-    width    : 560px;
-    height   : 100%;
+    width    : 540px;
 
     font-size   : 18px;
     line-height : 32px;
