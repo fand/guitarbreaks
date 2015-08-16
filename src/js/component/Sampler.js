@@ -12,6 +12,10 @@ class SamplerVM {
   getKitName () {
     return 'AMEN';
   }
+
+  changeKit (e) {
+    this.sampler.changeKit(e.target.value);
+  }
 }
 
 export default {
@@ -23,8 +27,11 @@ export default {
     return m('.Sampler', [
       m('.Sampler__Header', [
         m('.Sampler__KitName', 'Drumkit'),
-        m('select.Sampler__KitSelector', [
-          m('option', { value: 'AMEN', selected: 'selected' }, 'Amen')
+        m('select.Sampler__KitSelector', {
+          onchange : ::vm.changeKit,
+        }, [
+          m('option', { value: 'AMEN', selected: 'selected' }, 'AMEN'),
+          m('option', { value: 'GABBA' }, 'GABBA')
         ]),
       ]),
       m('.Sampler__Body', [

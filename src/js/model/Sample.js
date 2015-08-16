@@ -1,6 +1,7 @@
 'use strict';
 
 import Node from './Node';
+import {EventEmitter} from 'events';
 
 class Sample extends Node {
 
@@ -8,8 +9,22 @@ class Sample extends Node {
     super();
     this.playbackRate = 1.0;
 
-    this.isLoaded = this.loadSample(url)
-      .then(buffer => this.buffer = buffer);
+    this.eventEmitter = new EventEmitter();
+
+    this.on('sampleLoadSucceeded', (buffer) => {
+      this.buffer = buffer;
+      this.emit('waveLoaded', this.buffer.getChannelData(0));
+    });
+
+    this.loadSample(url);
+  }
+
+  on () {
+    this.eventEmitter.on.apply(this.eventEmitter, arguments);
+  }
+
+  emit () {
+    this.eventEmitter.emit.apply(this.eventEmitter, arguments);
   }
 
   play () {
@@ -24,28 +39,22 @@ class Sample extends Node {
   loadSample (url) {
     this.basename = url.split('/').pop();
 
-    return new Promise((resolve, reject) => {
-      var req = new XMLHttpRequest();
-      req.open('GET', url, true);
-      req.responseType = 'arraybuffer';
+    var req = new XMLHttpRequest();
+    req.open('GET', url, true);
+    req.responseType = 'arraybuffer';
 
-      req.onload = () => {
-        if (!req.response) { reject(new Error('no response')); }
-        this.ctx.decodeAudioData(req.response, function (buffer) {
-          resolve(buffer);
-        }, function (err) {
-          reject(err);
-        });
-      };
+    req.onload = () => {
+      if (!req.response) {
+        this.emit('sampleLoadFailed', new Error('no response'));
+      }
+      this.ctx.decodeAudioData(req.response, (buffer) => {
+        this.emit('sampleLoadSucceeded', buffer);
+      }, (err) => {
+        this.emit('sampleLoadFailed', err);
+      });
+    };
 
-      req.send();
-    });
-  }
-
-  getWaveData () {
-    return this.isLoaded.then(() => {
-      return this.buffer.getChannelData(0);
-    });
+    req.send();
   }
 
   setPlaybackRate (playbackRate) {

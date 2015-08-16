@@ -4,16 +4,29 @@ import Sample from './Sample';
 import Distortion from './Distortion';
 import Node from './Node';
 
+const KITS = {
+  'AMEN'  : [
+    './wav/amen/kick_ride.wav',
+    './wav/amen/snare.wav',
+    './wav/amen/kick_crash.wav'
+  ],
+  'GABBA' : [
+    './wav/gabba/tktk.wav',
+    './wav/gabba/tktk.wav',
+    './wav/gabba/tktk.wav'
+  ],
+};
+
 class Sampler extends Node {
 
   constructor () {
     super();
 
-    this.samples = [
-      new Sample('./wav/kick_ride.wav'),
-      new Sample('./wav/snare.wav'),
-      new Sample('./wav/kick_crash.wav'),
-    ];
+    this.kit = 'AMEN';
+
+    this.samples = KITS[this.kit].map((url) => {
+      return new Sample(url);
+    });
 
     this.distortions = [
       new Distortion(),
@@ -23,6 +36,13 @@ class Sampler extends Node {
 
     this.samples.forEach((s, i) => s.connect(this.distortions[i].input));
     this.distortions.forEach(d => d.connect(this.wet));
+  }
+
+  changeKit (kit) {
+    this.kit = kit;
+    KITS[this.kit].forEach((url, i) => {
+      this.samples[i].loadSample(url);
+    });
   }
 
   playNotes (notes) {

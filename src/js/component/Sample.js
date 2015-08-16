@@ -45,10 +45,12 @@ class SampleVM {
   drawWave (element, isInitialized, context) {
     if (isInitialized) { return; }
 
-    this.sampleNode.getWaveData().then((wave) => {
+    this.sampleNode.on('waveLoaded', (wave) => {
       var ctx = element.getContext("2d");
       const rect = element.getBoundingClientRect();
       const [w, h] = [rect.width, rect.height];
+
+      ctx.clearRect(0, 0, w, h);
 
       ctx.lineWidth = 0.3;
       ctx.strokeStyle = '#FFF';
@@ -63,6 +65,7 @@ class SampleVM {
       }
 
       ctx.stroke();
+      ctx.translate(0, -h * 0.5);
     });
   }
 
