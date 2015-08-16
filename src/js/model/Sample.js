@@ -15,8 +15,6 @@ class Sample extends Node {
       this.buffer = buffer;
       this.emit('waveLoaded', this.buffer.getChannelData(0));
     });
-
-    this.loadSample(url);
   }
 
   on () {

@@ -22,10 +22,11 @@ class Sampler extends Node {
   constructor () {
     super();
 
-    this.kit = 'AMEN';
+    this.samples = [new Sample(), new Sample(), new Sample()];
 
-    this.samples = KITS[this.kit].map((url) => {
-      return new Sample(url);
+    this.kit = 'AMEN';
+    KITS[this.kit].map((url, i) => {
+      this.samples[i].loadSample(url);
     });
 
     this.distortions = [
