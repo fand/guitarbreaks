@@ -8,12 +8,12 @@ const KITS = {
   'AMEN'  : [
     './wav/amen/kick_ride.wav',
     './wav/amen/snare.wav',
-    './wav/amen/kick_crash.wav'
+    './wav/amen/kick_crash.wav',
   ],
   'GABBA' : [
-    './wav/gabba/tktk.wav',
-    './wav/gabba/tktk.wav',
-    './wav/gabba/tktk.wav'
+    './wav/gabba/bd.wav',
+    './wav/gabba/snare.wav',
+    './wav/gabba/kick_crash.wav',
   ],
 };
 
