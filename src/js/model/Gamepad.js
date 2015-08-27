@@ -24,7 +24,8 @@ class Gamepad extends EventEmitter {
 
     this.buttons = BUTTONS;
 
-    this.isSimulating = false;
+    this.isSimulating = true;
+    window.addEventListener('gamepadconnected', () => this.isSimulating = false);
 
     this.simulate()
     this.startPolling();
