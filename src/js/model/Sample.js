@@ -8,6 +8,7 @@ class Sample extends Node {
   constructor (url) {
     super();
     this.playbackRate = 1.0;
+    this.bendRate     = 1.0;
 
     this.eventEmitter = new EventEmitter();
 
@@ -29,7 +30,7 @@ class Sample extends Node {
     if (this.node) { this.node.stop(0); }
     this.node = this.ctx.createBufferSource();
     this.node.buffer = this.buffer;
-    this.node.playbackRate.value = this.playbackRate;
+    this.node.playbackRate.value = this.playbackRate * this.bendRate;
     this.node.connect(this.wet);
     this.node.start(0);
   }
@@ -57,6 +58,15 @@ class Sample extends Node {
 
   setPlaybackRate (playbackRate) {
     this.playbackRate = playbackRate;
+  }
+
+  bend (isBending) {
+    if (isBending) {
+      this.bendRate += (5.0 - this.bendRate) * 0.1;
+    }
+    else {
+      this.bendRate -= (this.bendRate - 1.0) * 0.6;
+    }
   }
 
 }

@@ -35,6 +35,9 @@ class VM {
 
   playNotes () {
     let buffer = [];
+
+    this.sampler.bend(this.pad.buttons[4].pressed);
+
     this.pad.buttons.forEach((b, i) => {
       if (b.pressed) {
         buffer.push(BUTTON2NUM[i]);

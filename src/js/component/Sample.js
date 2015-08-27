@@ -92,7 +92,8 @@ export default {
       }),
       m('.Sample__FXs', [
         m('.Sample__FXs__FX', [
-          m('.Sample__FXs__FX__Label', 'distortion'),
+          m('.Sample__FXs__FX__Label', 'gain'),
+          m('.Sample__FXs__FX__Value', (vm.distortion() / 10000).toFixed(2)),
           m('input.Sample__FXs__FX__Input', {
             type     : 'range',
             min      : 10000,
@@ -103,6 +104,7 @@ export default {
         ]),
         m('.Sample__FXs__FX', [
           m('.Sample__FXs__FX__Label', 'volume'),
+          m('.Sample__FXs__FX__Value', (vm.volume() / 10000).toFixed(2)),
           m('input.Sample__FXs__FX__Input', {
             type     : 'range',
             min      : 0,
@@ -113,6 +115,7 @@ export default {
         ]),
         m('.Sample__FXs__FX', [
           m('.Sample__FXs__FX__Label', 'pitch'),
+          m('.Sample__FXs__FX__Value', (vm.pitch() / 10000).toFixed(2)),
           m('input.Sample__FXs__FX__Input', {
             type     : 'range',
             min      : 0,

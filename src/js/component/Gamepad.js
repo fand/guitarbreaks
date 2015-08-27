@@ -13,7 +13,6 @@ class VM {
       });
       if (isChanged) {
         this.buttons = buttons.map(b => b.pressed);
-        console.log(this.buttons);
         m.redraw();
       }
     });
