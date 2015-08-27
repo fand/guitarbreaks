@@ -69,11 +69,17 @@
             &__FX {
                 &__Label {
                     display: inline-block;
-                    width : 130px;
+                    width : 100px;
                 }
+
+                &__Value {
+                    display: inline-block;
+                    width : 70px;
+                }
+
                 &__Input {
                     display: inline-block;
-                    width : 320px;
+                    width : 290px;
                 }
             }
         }
