@@ -44,7 +44,7 @@ class VM {
 
   onClick () {
     const now = Date.now();
-    if (now - this.lastClickTime < 1000) {
+    if (now - this.lastClickTime < 2000) {
       this.interval((now - this.lastClickTime) / this.beat);
       this.bpm(MINUTE / (this.interval() * this.beat));
     }
