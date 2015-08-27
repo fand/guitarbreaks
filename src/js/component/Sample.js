@@ -84,7 +84,9 @@ export default {
       m('.Sample__Name', vm.getSampleName()),
       m('.Sample__Play', {
         onclick : ::vm.onClickPlayButton,
-      }, '➤'),
+      }, [
+        m('.fa.fa-play'),
+      ]),
       m('canvas.Sample__Wave', {
         config: ::vm.drawWave,
       }),
