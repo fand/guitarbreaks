@@ -55,6 +55,10 @@ class Sampler extends Node {
     this.samples[note].play();
   }
 
+  bend (isBending) {
+    this.samples.map(s => s.bend(isBending));
+  }
+
 }
 
 export default Sampler;
