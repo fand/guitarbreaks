@@ -12,8 +12,8 @@ const KITS = {
   ],
   'GABBA' : [
     './wav/gabba/bd.wav',
-    './wav/gabba/snare.wav',
-    './wav/gabba/kick_crash.wav',
+    './wav/gabba/clap.wav',
+    './wav/gabba/hat_open.wav',
   ],
 };
 
