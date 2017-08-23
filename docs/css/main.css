@@ -1,0 +1,227 @@
+html {
+  color: white;
+  background: black;
+  font-weight: bold; }
+
+.Wrapper {
+  position: absolute;
+  width: 960px;
+  height: 100%;
+  top: 0;
+  left: 50%;
+  margin-left: -480px; }
+
+.LeftColumn {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 400px;
+  height: 100%; }
+
+.RightColumn {
+  position: absolute;
+  top: 0;
+  left: 400px;
+  width: 560px;
+  height: 100%;
+  font-size: 18px;
+  line-height: 32px;
+  -webkit-touch-callout: none;
+  -webkit-user-select: none;
+  -khtml-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none; }
+
+.Title {
+  position: relative;
+  height: 72px;
+  font-size: 48px;
+  line-height: 72px;
+  vertical-align: bottom; }
+
+.Gamepad {
+  position: relative;
+  max-width: 360px;
+  height: 100%;
+  margin: 0 20px;
+  background: #000800; }
+  .Gamepad .Gamepad__Red, .Gamepad .Gamepad__Green, .Gamepad .Gamepad__Blue, .Gamepad .Gamepad__Select, .Gamepad .Gamepad__Start {
+    position: absolute;
+    top: 20px;
+    left: 0;
+    width: 100%; }
+  .Gamepad__Guitar {
+    margin: 20px 0;
+    width: 100%;
+    opacity: 0.7; }
+  .Gamepad .Gamepad__Red, .Gamepad .Gamepad__Green, .Gamepad .Gamepad__Blue, .Gamepad .Gamepad__Select, .Gamepad .Gamepad__Start {
+    -webkit-filter: brightness(1.6); }
+    .Gamepad .on.Gamepad__Red, .Gamepad .on.Gamepad__Green, .Gamepad .on.Gamepad__Blue, .Gamepad .on.Gamepad__Select, .Gamepad .on.Gamepad__Start {
+      opacity: 1.0; }
+    .Gamepad .off.Gamepad__Red, .Gamepad .off.Gamepad__Green, .Gamepad .off.Gamepad__Blue, .Gamepad .off.Gamepad__Select, .Gamepad .off.Gamepad__Start {
+      opacity: 0.0; }
+  .Gamepad__SimulateButton {
+    position: relative;
+    margin-top: -90px;
+    margin-left: -40px;
+    height: 50px;
+    width: 180px;
+    font-size: 16px;
+    line-height: 50px;
+    text-align: center;
+    text-shadow: 0 0 5px #000000;
+    cursor: pointer; }
+    .Gamepad__SimulateButton:hover {
+      background: rgba(255, 255, 255, 0.1);
+      border-radius: 40px 10px;
+      text-shadow: 0 0 5px #FF8888; }
+
+.Sampler .Sample, .MasterDistortion, .Timer {
+  position: relative;
+  display: block;
+  width: auto;
+  padding: 10px 20px;
+  margin: 10px;
+  border-radius: 2px; }
+
+.Sampler__Header {
+  height: 36px;
+  padding: 20px 10px 10px; }
+
+.Sampler__KitName {
+  display: inline-block;
+  width: 120px;
+  vertical-align: bottom; }
+
+.Sampler__KitSelector {
+  display: inline-block;
+  width: 170px;
+  vertical-align: middle; }
+
+.Sampler .Sample {
+  height: 150px;
+  color: #333333;
+  text-shadow: 0 0 3px #FFFFFF;
+  z-index: 1; }
+  .Sampler .Sample.Red {
+    background-color: #F88; }
+  .Sampler .Sample.Green {
+    background-color: #8D8; }
+  .Sampler .Sample.Blue {
+    background-color: #88F; }
+  .Sampler .Sample__NameLabel {
+    display: inline-block;
+    width: 140px;
+    z-index: 3; }
+  .Sampler .Sample__Name {
+    display: inline-block;
+    width: 280px;
+    z-index: 3; }
+  .Sampler .Sample__Play {
+    display: inline-block;
+    width: 60px;
+    z-index: 3;
+    cursor: pointer;
+    text-align: center;
+    color: #000; }
+    .Sampler .Sample__Play:hover {
+      color: #ddd;
+      text-shadow: 0 0 5px #333; }
+  .Sampler .Sample__Wave {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    opacity: 0.6;
+    z-index: -1; }
+  .Sampler .Sample__FXs {
+    margin: 10px; }
+    .Sampler .Sample__FXs__FX__Label {
+      display: inline-block;
+      width: 100px; }
+    .Sampler .Sample__FXs__FX__Value {
+      display: inline-block;
+      width: 70px; }
+    .Sampler .Sample__FXs__FX__Input {
+      display: inline-block;
+      width: 290px; }
+
+.Sampler .Sample, .MasterDistortion, .Timer {
+  position: relative;
+  display: block;
+  width: auto;
+  padding: 10px 20px;
+  margin: 10px;
+  border-radius: 2px; }
+
+.MasterDistortion {
+  height: 120px;
+  background: #666666; }
+  .MasterDistortion__Toggle {
+    display: inline-block;
+    width: 14px;
+    height: 14px;
+    border-radius: 3px;
+    cursor: pointer; }
+    .MasterDistortion__Toggle.on {
+      background: #88FF88; }
+    .MasterDistortion__Toggle.off {
+      background: #000000; }
+  .MasterDistortion__Label {
+    display: inline-block;
+    margin-left: 10px; }
+  .MasterDistortion__FXs {
+    margin: 10px; }
+    .MasterDistortion__FXs__FX__Label {
+      display: inline-block;
+      width: 130px; }
+    .MasterDistortion__FXs__FX__Input {
+      display: inline-block;
+      width: 320px; }
+
+.Sampler .Sample, .MasterDistortion, .Timer {
+  position: relative;
+  display: block;
+  width: auto;
+  padding: 10px 20px;
+  margin: 10px;
+  border-radius: 2px; }
+
+.Timer {
+  height: 120px;
+  background-color: #EEEEFF;
+  color: #FF8866; }
+  .Timer__Row {
+    display: block;
+    margin-left: 250px;
+    margin-top: 17px;
+    margin-bottom: 15px; }
+    .Timer__Row__Label {
+      display: inline-block;
+      width: 90px; }
+    .Timer__Row__Value {
+      display: inline-block;
+      width: 160px; }
+  .Timer__TapButton {
+    position: absolute;
+    top: 0;
+    left: 0;
+    margin: 20px;
+    width: 208px;
+    height: 98px;
+    cursor: pointer;
+    border: 1px solid #8888AA;
+    border-radius: 2px;
+    color: #8888AA;
+    font-size: 22px;
+    line-height: 90px;
+    text-align: center;
+    vertical-align: middle; }
+    .Timer__TapButton:hover {
+      color: #FF8866;
+      border: 1px solid #FF8866;
+      background: #FFF8FF; }
+    .Timer__TapButton:active {
+      background: #8888AA; }

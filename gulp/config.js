@@ -9,13 +9,13 @@ export default {
 
   browserify : {
     src  : BASE('src/js/index.js'),
-    dst  : BASE('public/js'),
+    dst  : BASE('docs/js'),
     name : 'index.js',
   },
 
   sass : {
     src : BASE('src/scss/**/*.scss'),
-    dst : BASE('public/css'),
+    dst : BASE('docs/css'),
   },
 
   watch : {
@@ -25,9 +25,9 @@ export default {
 
   browserSync : {
     server : {
-      baseDir : BASE('public'),
+      baseDir : BASE('docs'),
     },
-    files : [BASE('public/**/*')],
+    files : [BASE('docs/**/*')],
   },
 
 };
